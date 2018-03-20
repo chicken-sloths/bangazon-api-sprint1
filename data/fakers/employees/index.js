@@ -1,11 +1,11 @@
 "use strict";
 
-const { generateEmployees } = require("./employeeFaker");
+const { generateComputers } = require("./computerFaker");
 const { generateDepartments } = require("./departmentFaker");
 const { generateEmployeeComputerRelationships } = require("./employeeComputerFaker");
-const { generateEmployeeTrainingProgramRelationships } = require("./employeeTrainingProgramFaker");
 const { generateEmployees } = require("./employeeFaker");
-const { generateTrainingPrograms } = require("./trainingProgramFaker")
+const { generateEmployeeTrainingProgramRelationships } = require("./employeeTrainingProgramFaker");
+const { generateTrainingPrograms } = require("./trainingProgramFaker");
 
 module.exports = {
   generateComputers,
