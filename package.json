@@ -1,0 +1,26 @@
+{
+  "name": "bangazon-api-sprint1",
+  "version": "1.0.0",
+  "description": "Bangazon Corp API - Chicken Sloths Sprint 1 - NSS Day Cohort 23",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chicken-sloths/bangazon-api-sprint1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chicken-sloths/bangazon-api-sprint1/issues"
+  },
+  "homepage": "https://github.com/chicken-sloths/bangazon-api-sprint1#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "faker": "^4.1.0",
+    "nodemon": "^1.17.2",
+    "sqlite3": "^4.0.0"
+  }
+}
