@@ -1,4 +1,8 @@
-const model = require("../../models/ProductTypesModel");
+"use strict";
+
+const appRoot = process.cwd();
+
+const model = require(appRoot + "/models/ProductTypesModel");
 
 
 module.exports = {  };
