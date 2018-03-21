@@ -1,16 +1,16 @@
 'use strict';
-const { generateCustomers } = require('./customersFaker');
-const { generateOrders } = require('./ordersFaker');
-const { generatePaymentOptions } = require('./paymentOptionsFaker');
-const { generateProductOrders } = require('./productOrdersFaker');
-const { generateProducts } = require('./productsFaker');
-const { generateProductTypes } = require('./productTypesFaker');
+const { _generateCustomers } = require('./_customersFaker');
+const { _generateOrders } = require('./_ordersFaker');
+const { _generatePaymentOptions } = require('./_paymentOptionsFaker');
+const { _generateProductOrders } = require('./_productOrdersFaker');
+const { _generateProducts } = require('./_productsFaker');
+const { _generateProductTypes } = require('./_productTypesFaker');
 
 module.exports = {
-  generateCustomers,
-  generateOrders,
-  generatePaymentOptions,
-  generateProductOrders,
-  generateProducts,
-  generateProductTypes
+  _generateCustomers,
+  _generateOrders,
+  _generatePaymentOptions,
+  _generateProductOrders,
+  _generateProducts,
+  _generateProductTypes
 };
