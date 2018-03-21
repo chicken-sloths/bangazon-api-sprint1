@@ -2,22 +2,18 @@
 
 const { generateProductData } = require("./faker/products/index");
 const { generateEmployeeData } = require("./faker/employees/index");
-const {
-  createWriteStream,
-  exists,
-  mkdir
-} = require('fs');
+const fs = require('fs');
 const path = require("path");
 
 let jsonDir = __dirname+"/json";
 
 // checks if data/json/ folder exists
-exists(jsonDir, exists => {
-  if (exists) {
+fs.exists(jsonDir, folderExists => {
+  if (folderExists) {
     writeJson(jsonDir);
   } else {
     // makes it if it doesn't
-    mkdir(jsonDir, err => {
+    fs.mkdir(jsonDir, err => {
       if (err) {
         console.log("mkdir error:",err);
       } else {
@@ -38,22 +34,22 @@ const writeJson = (jsonDir) => {
     productOrders
   } = generateProductData();
 
-  let customerStream = createWriteStream(jsonDir+"/customers.json");
+  let customerStream = fs.createWriteStream(jsonDir+"/customers.json");
   customerStream.write(JSON.stringify(customers));
 
-  let optionStream = createWriteStream(jsonDir+"/products.json");
+  let optionStream = fs.createWriteStream(jsonDir+"/products.json");
   optionStream.write(JSON.stringify(products));
 
-  let productTypeStream = createWriteStream(jsonDir+"/productTypes.json");
+  let productTypeStream = fs.createWriteStream(jsonDir+"/productTypes.json");
   productTypeStream.write(JSON.stringify(productTypes));
 
-  let paymentOptionStream = createWriteStream(jsonDir+"/paymentOptions.json");
+  let paymentOptionStream = fs.createWriteStream(jsonDir+"/paymentOptions.json");
   paymentOptionStream.write(JSON.stringify(paymentOptions));
 
-  let orderStream = createWriteStream(jsonDir+"/orders.json");
+  let orderStream = fs.createWriteStream(jsonDir+"/orders.json");
   orderStream.write(JSON.stringify(orders));
 
-  let productOrderStream = createWriteStream(jsonDir+"/productOrders.json");
+  let productOrderStream = fs.createWriteStream(jsonDir+"/productOrders.json");
   productOrderStream.write(JSON.stringify(productOrders));
 
   // employee half
@@ -66,21 +62,21 @@ const writeJson = (jsonDir) => {
     employeeTrainingProgramRelationships
   } = generateEmployeeData();
   
-  let departmentStream = createWriteStream(jsonDir+"/departments.json");
+  let departmentStream = fs.createWriteStream(jsonDir+"/departments.json");
   departmentStream.write(JSON.stringify(departments));
   
-  let employeeStream = createWriteStream(jsonDir+"/employees.json");
+  let employeeStream = fs.createWriteStream(jsonDir+"/employees.json");
   employeeStream.write(JSON.stringify(employees));
   
-  let computerStream = createWriteStream(jsonDir+"/computers.json");
+  let computerStream = fs.createWriteStream(jsonDir+"/computers.json");
   computerStream.write(JSON.stringify(computers));
   
-  let employeeComputerStream = createWriteStream(jsonDir+"/employeeComputers.json");
+  let employeeComputerStream = fs.createWriteStream(jsonDir+"/employeeComputers.json");
   employeeComputerStream.write(JSON.stringify(employeeComputerRelationships));
   
-  let trainingProgramStream = createWriteStream(jsonDir+"/trainingPrograms.json");
+  let trainingProgramStream = fs.createWriteStream(jsonDir+"/trainingPrograms.json");
   trainingProgramStream.write(JSON.stringify(trainingPrograms));
   
-  let employeeTrainingProgramStream = createWriteStream(jsonDir+"/employeeTrainingPrograms.json");
+  let employeeTrainingProgramStream = fs.createWriteStream(jsonDir+"/employeeTrainingPrograms.json");
   employeeTrainingProgramStream.write(JSON.stringify(employeeTrainingProgramRelationships));
 };
