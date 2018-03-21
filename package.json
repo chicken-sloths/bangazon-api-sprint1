@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/chicken-sloths/bangazon-api-sprint1#readme",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "nodemon": "^1.17.2",
