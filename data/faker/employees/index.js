@@ -7,26 +7,27 @@ const { generateEmployees } = require("./employeeFaker");
 const { generateEmployeeTrainingProgramRelationships } = require("./employeeTrainingProgramFaker");
 const { generateTrainingPrograms } = require("./trainingProgramFaker")
 
-// SAMPLE CALLS
+module.exports.generateEmployeeData = () => {
+  const specs = {
+    departments: 10,
+    employees: 25,
+    computers: 25,
+    trainingPrograms: 10
+  };
 
-// ASSUMPTION: 
-//  10 departments
-//  25 employees
-//  25 computers
-//  10 training programs
+  const departments = generateDepartments(10);
+  const employees = generateEmployees(25, 10);
+  const computers = generateComputers(25);
+  const employeeComputerRelationships = generateEmployeeComputerRelationships(25);
+  const trainingPrograms = generateTrainingPrograms(10);
+  const employeeTrainingProgramRelationships = generateEmployeeTrainingProgramRelationships(25,10);
 
-// generateDepartments(10);
-// generateEmployees(25, 10);
-// generateComputers(25);
-// generateEmployeeComputerRelationships(25);
-// generateTrainingPrograms(10);
-// generateEmployeeTrainingProgramRelationships(25,10);
-
-module.exports = {
-  generateComputers,
-  generateDepartments,
-  generateEmployeeComputerRelationships,
-  generateEmployeeTrainingProgramRelationships,
-  generateEmployees,
-  generateTrainingPrograms
+  return {
+    departments,
+    employees,
+    computers,
+    employeeComputerRelationships,
+    trainingPrograms,
+    employeeTrainingProgramRelationships
+  };
 };
