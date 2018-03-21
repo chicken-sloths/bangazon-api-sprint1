@@ -25,6 +25,8 @@ generateSqlTable(
 );
 */
 
+// Drops the table if exists, then creates it and inserts the data from dataToIterateOver.
+// Values to Insert is what properties on each peice of data to iterate over that should be extracted
 const generateSqlTable = ({ tableName, columns, dataToIterateOver, valuesToInsert }) => {
   db.serialize(() => {
     db.run(`DROP TABLE IF EXISTS ${tableName}`);
