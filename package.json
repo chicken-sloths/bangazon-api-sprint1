@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:generate": "node db/build-db",
-    "data:generate": "node data/build-data",
+    "db:generate": "node db/build-db.js",
+    "data:generate": "node data/build-data.js",
     "start": "nodemon app.js"
   },
   "repository": {
