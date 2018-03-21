@@ -2,9 +2,12 @@
   "name": "bangazon-api-sprint1",
   "version": "1.0.0",
   "description": "Bangazon Corp API - Chicken Sloths Sprint 1 - NSS Day Cohort 23",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:generate": "node db/build-db.js",
+    "data:generate": "node data/build-data.js",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
