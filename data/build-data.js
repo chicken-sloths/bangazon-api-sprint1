@@ -1,1 +1,0 @@
-const fakeProductsData = require('./fakers/index.js');
