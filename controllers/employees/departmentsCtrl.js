@@ -3,25 +3,23 @@
 const appRoot = process.cwd();
 const { getAllDepartments, getSingleDepartment } = require(appRoot + "/models/employees/DepartmentsModel");
 
-module.exports.getAllDirectors = (req, res, next) => {
-  getAll()
-    .then(directors => {
-      res.status(200).json(directors);
+module.exports.getAllDepartments= (req, res, next) => {
+  getAllDepartments()
+    .then(departments => {
+      res.status(200).json(departments);
     })
     .catch(error => {
       next(error);
     })
 }
 
-module.exports.getOneDirector = (req, res, next) => {
-  getOneDirector(req.params.id)
-    .then(director => {
-      res.status(200).json(director);
+module.exports.getSingleDepartment = (req, res, next) => {
+  getSingleDepartment(req.params.id)
+    .then(department => {
+      res.status(200).json(department);
     })
     .catch(error => {
       next(error);
     })
 }
 
-
-module.exports = {  };
