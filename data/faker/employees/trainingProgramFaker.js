@@ -1,6 +1,7 @@
 "use strict";
 
 const faker = require("faker");
+const randomInt = require("../randomInt");
 
 module.exports.generateTrainingPrograms = (limit) => {
   let trainingPrograms = [];
@@ -9,7 +10,7 @@ module.exports.generateTrainingPrograms = (limit) => {
     let start_date = faker.date.past(5, new Date());
     let end_date = faker.date.between(start_date, new Date());
     // max_capacity = random number between 10 and 20
-    let max_capacity = Math.floor(Math.random() * 10) + 10;
+    let max_capacity = randomInt(10) + 10;
     trainingPrograms.push({
       name,
       start_date,
