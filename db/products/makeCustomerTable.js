@@ -1,5 +1,5 @@
 'use strict';
-const { generateSqlTable } = require("../sqlRunTemplate");	
+const { generateSqlTable } = require("../sqlRunTemplate");
 const customers = require("../../data/json/customers.json");
 
 module.exports = () => {
