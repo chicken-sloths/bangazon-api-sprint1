@@ -6,7 +6,7 @@ const orders = require("../../data/json/orders.json");
 module.exports = () => {
   generateSqlTable(
     {
-      tableName: `orders`,
+      tableName: `Orders`,
       columns: 
         `order_id INTEGER PRIMARY KEY,
         customer_id INTEGER,
