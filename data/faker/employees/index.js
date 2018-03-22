@@ -17,7 +17,7 @@ module.exports.generateEmployeeData = () => {
 
   const employees = generateEmployees(25, 10);
   const departments = generateDepartments(10, 25);
-  const computers = generateComputers(25, employees);
+  const computers = generateComputers(25);
   const employeeComputerRelationships = generateEmployeeComputerRelationships(employees, computers);
   const trainingPrograms = generateTrainingPrograms(10);
   const employeeTrainingProgramRelationships = generateEmployeeTrainingProgramRelationships(25,10);
