@@ -2,10 +2,8 @@
 
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("api-sprint.sqlite");
-const { readFileSync } = require("fs");
 const { generateSqlTable } = require('../sqlRunTemplate');
-
-const products = JSON.parse(readFileSync("../data/json/products.json"));
+const products = require("../../data/json/products.json");
 
 module.exports = () => {
   generateSqlTable(
