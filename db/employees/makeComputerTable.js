@@ -8,7 +8,7 @@ const computers = require("../../data/json/computers.json");
 module.exports = () => {
   generateSqlTable(
     {
-      tableName: `computers`,
+      tableName: `Computers`,
       columns: 
         `computer_id INTEGER PRIMARY KEY,
         employee_id INTEGER,
