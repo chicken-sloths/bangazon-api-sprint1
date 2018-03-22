@@ -1,6 +1,6 @@
 'use strict';
 const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("api-sprint.sqlite");
+const db = new sqlite3.Database("db/api-sprint.sqlite");
 
 /*
 EXAMPLE FUNCTION CALL
