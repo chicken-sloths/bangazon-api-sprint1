@@ -27,7 +27,7 @@ makeTrainingProgramTable();
 // makeEmployeeTrainingTable();
 
 // makeCustomerTable();
-// makeOrderTable();
+makeOrderTable();
 // makePaymentOptionsTable();
 // makeProductTypeTable();
 // makeProductsTable();
