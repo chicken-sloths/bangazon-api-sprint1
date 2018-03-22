@@ -1,34 +1,18 @@
 'use strict';
-// All functions for building Employee Data
-const { 
-  makeComputerTable,
-  makeDepartmentTable,
-  makeEmployeeComputerTable,
-  makeEmployeeTable,
-  makeEmployeeTrainingTable,
-  makeTrainingProgramTable
-} = require('./employees/index');
 
-// All functions for building Product Data
-const { 
-  makeCustomerTable,
-  makeOrderTable,
-  makePaymentOptionsTable,
-  makeProductOrderTable,
-  makeProductsTable,
-  makeProductTypeTable
-} = require('./products/index');
+const buildEmployeeData = require('./employees/index');
+const buildProductData = require('./products/index');
 
-makeComputerTable();
-makeDepartmentTable();
-makeEmployeeTable();
-makeTrainingProgramTable();
-// makeEmployeeComputerTable();
-// makeEmployeeTrainingTable();
+buildEmployeeData.makeComputerTable();
+buildEmployeeData.makeDepartmentTable();
+buildEmployeeData.makeEmployeeComputerTable();
+buildEmployeeData.makeEmployeeTable();
+buildEmployeeData.makeEmployeeTrainingTable();
+buildEmployeeData.makeTrainingProgramTable();
 
-// makeCustomerTable();
-makeOrderTable();
-// makePaymentOptionsTable();
-// makeProductTypeTable();
-// makeProductsTable();
-// makeProductOrderTable();
+buildProductData.makeCustomerTable();
+buildProductData.makeOrderTable();
+buildProductData.makePaymentOptionsTable();
+buildProductData.makeProductOrderTable();
+buildProductData.makeProductsTable();
+buildProductData.makeProductTypeTable();
