@@ -5,15 +5,15 @@ const db = new sqlite3.Database('./db/api-sprint.sqlite');
 const getSingleProduct = id => new Promise((resolve, reject) => 
   db.get(
     `SELECT *
-    FROM products
+    FROM Products
     WHERE product_id = ${id}`,
-    (err, products) => err ? reject(err) : resolve(products)
+    (err, product) => err ? reject(err) : resolve(product)
 ));
 
 const getAllProducts = () => new Promise((resolve, reject) => 
   db.all(
     `SELECT *
-    FROM products`,
+    FROM Products`,
     (err, products) => err ? reject(err) : resolve(products)
 ));
 
