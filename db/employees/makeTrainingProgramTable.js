@@ -1,8 +1,26 @@
 'use strict';
 
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("api-sprint.sqlite");
+const { generateSqlTable } = require("../sqlRunTemplate");
+const trainingPrograms = require("../../data/json/trainingPrograms.json");
 
 module.exports = () => {
-  // function that creates training program table
+  generateSqlTable(
+    {
+      tableName: `Training_Programs`,
+      columns: 
+        `training_program_id INTEGER PRIMARY KEY,
+        max_capacity INTEGER,
+        start_date TEXT,
+        end_date TEXT,
+        name TEXT`,
+      dataToIterateOver: trainingPrograms,
+      valuesToInsert: [
+        `training_program_id`,
+        `max_capacity`,
+        `start_date`,
+        `end_date`, 
+        `name`
+      ]
+    }
+  )
 }

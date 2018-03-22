@@ -1,8 +1,25 @@
 'use strict';
-
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("api-sprint.sqlite");
+const { generateSqlTable } = require("../sqlRunTemplate");
+const employeeComputers = require("../../data/json/employeeComputers.json");
 
 module.exports = () => {
-  // function that creates employee_customer join table
+  generateSqlTable(
+    {
+      tableName: `Employee_Computers`,
+      columns:
+      `computer_id INTEGER,
+      employee_id INTEGER,
+      start_date TEXT,
+      end_date TEXT,
+      FOREIGN KEY (computer_id) REFERENCES Computers(computer_id),
+      FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)`,
+      dataToIterateOver: employeeComputers,
+      valuesToInsert: [
+        `computer_id`,
+        `employee_id`,
+        `start_date`,
+        `end_date`
+      ]
+    }
+  );
 }
