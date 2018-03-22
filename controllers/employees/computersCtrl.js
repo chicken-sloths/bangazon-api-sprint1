@@ -27,3 +27,17 @@ module.exports.getAllComputers = (req, res, next) => {
     })
     .catch(err => next(err));
 }
+
+module.exports.createNewComputer = (req, res, next) => {
+  // ready to catch a SyntaxError (bad JSON)
+  try {
+    computers.createComputer(req.body)
+      .then(data => {
+        res.status(200).json(data);
+      })
+      .catch(err => next(err));
+  } catch(e) {
+    let err = new Error(`${e.name}: ${e.message}.`);
+    next(err);
+  }
+};

@@ -26,7 +26,30 @@ const getAllComputers = () => {
   });
 };
 
+const createComputer = ({ mac_address, purchase_date, decommission_date }) => {
+  return new Promise((resolve, reject) => {
+    if (mac_address && purchase_date && decommission_date) {
+      db.run(`INSERT INTO Computers (
+        mac_address,
+        purchase_date,
+        decommission_date
+      ) VALUES (
+        "${mac_address}",
+        "${purchase_date}",
+        "${decommission_date}"
+      )`, function(err) {
+        if (err) reject(err);
+        resolve(this.lastID);
+      });
+    } else {
+      let err = new Error("Please supply a `mac_address`, `purchase_date`, and `decommission_date`.");
+      reject(err);
+    }
+  });
+}
+
 module.exports = {
   getSingleComputer,
-  getAllComputers
+  getAllComputers,
+  createComputer
 };
