@@ -25,7 +25,7 @@ generateSqlTable(
 );
 */
 
-const escapeQuotes = stringValue => stringValue.replace("'", "''");
+const escapeSingleQuotes = stringValue => stringValue.replace("'", "''");
 
 // Drops the table if exists, then creates it and inserts the data from dataToIterateOver.
 // Values to Insert is what properties on each peice of data to iterate over that should be extracted
@@ -57,7 +57,7 @@ const generateSqlTable = ({ tableName, columns, dataToIterateOver, valuesToInser
 
         // Else it considers it a string
         else {
-          SqlValues += `'${escapeQuotes(object[value])}'`;
+          SqlValues += `'${escapeSingleQuotes(object[value])}'`;
         }
         
         // Add a comma to the string if it is not the final value
