@@ -11,7 +11,7 @@ const {
 } = require(appRoot + '/controllers/employees/employeesCtrl');
 
 //TODO: routes & their corresponding controllers are enumerated here
-employeesRouter.get('/employees', getAllEmployees);
-employeesRouter.get('/employees/:id', getSingleEmployee);
+employeesRouter.get('/', getAllEmployees);
+employeesRouter.get('/:id', getSingleEmployee);
 
 module.exports = employeesRouter;
