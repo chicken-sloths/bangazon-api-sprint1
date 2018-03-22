@@ -1,8 +1,23 @@
 'use strict';
 
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("api-sprint.sqlite");
+const { generateSqlTable } = require("../sqlRunTemplate");
+const productOrders = require("../../data/json/productOrders");
 
-module.exports = () => {
-  // function that creates product_order join table
-}
+module.exports = () =>
+  generateSqlTable(
+    {
+      tableName: `Product_Orders`,
+      columns:
+        `product_order_id INTEGER PRIMARY KEY,
+	product_id INT,
+	order_id INT,
+        FOREIGN KEY (product_id) REFERENCES Products(product_id),
+        FOREIGN KEY (order_id) REFERENCES Orders(order_id)`,
+      dataToIterateOver: productOrders,
+      valuesToInsert: [
+	null,
+	`product_id`,
+	`order_id`
+      ]
+    }
+  );
