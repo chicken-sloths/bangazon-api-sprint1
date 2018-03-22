@@ -25,6 +25,8 @@ generateSqlTable(
 );
 */
 
+const escapeString = stringValue => stringValue.replace("'", "''");
+
 // Drops the table if exists, then creates it and inserts the data from dataToIterateOver.
 // Values to Insert is what properties on each peice of data to iterate over that should be extracted
 const generateSqlTable = ({ tableName, columns, dataToIterateOver, valuesToInsert }) => {
@@ -34,32 +36,37 @@ const generateSqlTable = ({ tableName, columns, dataToIterateOver, valuesToInser
     db.run(`CREATE TABLE IF NOT EXISTS ${tableName} (${columns})`);
 
     dataToIterateOver.forEach(object => {
-      let values = "";
+      let SqlValues = "";
 
-      // Iterate over the values to insert and turn them into sql code
+      // Iterate over the SqlValues to insert and turn them into sql code
       for (let i = 0; i < valuesToInsert.length; i++) {
         const value = valuesToInsert[i];
 
-        // Add a comma to the string if it is not the last value in the column
-        const addComma = i < valuesToInsert.length - 1 ? "," : "";
-
-        // If the valueToInsert itself is a number
+        // If the valueToInsert itself is a number, add that literal number.
         if (Number.isInteger(value)) {
-          values += `${value}${addComma}`;
+          SqlValues += `${value}`;
         }
 
-        // If the value on the object is an integer, add it.  
+        // If the value on the object is an integer, add the number without quotes.  
         else if (Number.isInteger(object[value])) {
-          values += `${object[value]}${addComma}`;
+          SqlValues += `${object[value]}`;
+        }
+        else if (value === null) {
+          SqlValues += `${null}`
         }
 
-        // If it is a string, add quotes around it.
+        // Else it considers it a string
         else {
-          values += `${value === null ? null : "'" + object[value] + "'"}${addComma}`;
+          SqlValues += `'${escapeString(object[value])}'`;
         }
+        
+        // Add a comma to the string if it is not the final value
+        const shouldAddComma = i < valuesToInsert.length - 1 ? "," : "";
+        SqlValues += `${shouldAddComma}`;
+        
       }
 
-      db.run(`INSERT INTO ${tableName} VALUES (${values})`);
+      db.run(`INSERT INTO ${tableName} VALUES (${SqlValues})`);
     });
   });
 };
