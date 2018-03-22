@@ -16,7 +16,7 @@ module.exports = () => {
       dataToIterateOver: orders,
       valuesToInsert: [
         null,
-        `order_id`,
+        `customer_id`,
         `payment_option_id`
       ]
     }
