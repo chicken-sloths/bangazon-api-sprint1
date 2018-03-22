@@ -1,4 +1,5 @@
 'use strict';
+
 const { generateSqlTable } = require("../sqlRunTemplate");
 const productTypes = require("../../data/json/productTypes.json");
 
