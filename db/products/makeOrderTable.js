@@ -15,7 +15,7 @@ module.exports = () => {
         FOREIGN KEY(payment_option_id) REFERENCES payment_options(payment_option_id)`,
       dataToIterateOver: orders,
       valuesToInsert: [
-        null,
+        `order_id`,
         `customer_id`,
         `payment_option_id`
       ]

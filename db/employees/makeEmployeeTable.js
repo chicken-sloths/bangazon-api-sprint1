@@ -16,7 +16,7 @@ module.exports = () => {
         REFERENCES Departments(department_id)`,
       dataToIterateOver: employees,
       valuesToInsert: [
-        null,
+        `employee_id`,
         `first_name`,
         `last_name`, 
         `department_id`

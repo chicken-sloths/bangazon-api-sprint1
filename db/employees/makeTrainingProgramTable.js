@@ -15,7 +15,7 @@ module.exports = () => {
         name TEXT`,
       dataToIterateOver: trainingPrograms,
       valuesToInsert: [
-        null,
+        `training_program_id`,
         `max_capacity`,
         `start_date`,
         `end_date`, 

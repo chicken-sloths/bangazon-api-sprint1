@@ -36,12 +36,12 @@ const writeJson = (jsonDir) => {
 
   let customerStream = fs.createWriteStream(jsonDir+"/customers.json");
   customerStream.write(JSON.stringify(customers));
-
-  let optionStream = fs.createWriteStream(jsonDir+"/products.json");
-  optionStream.write(JSON.stringify(products));
-
+  
   let productTypeStream = fs.createWriteStream(jsonDir+"/productTypes.json");
   productTypeStream.write(JSON.stringify(productTypes));
+
+  let productStream = fs.createWriteStream(jsonDir+"/products.json");
+  productStream.write(JSON.stringify(products));
 
   let paymentOptionStream = fs.createWriteStream(jsonDir+"/paymentOptions.json");
   paymentOptionStream.write(JSON.stringify(paymentOptions));
