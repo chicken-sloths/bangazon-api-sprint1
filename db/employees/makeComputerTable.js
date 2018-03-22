@@ -1,7 +1,5 @@
 'use strict';
 
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("api-sprint.sqlite");
 const { generateSqlTable } = require("../sqlRunTemplate");
 const computers = require("../../data/json/computers.json");
 
