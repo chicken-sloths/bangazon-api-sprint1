@@ -3,11 +3,11 @@
 const faker = require("faker");
 
 // ASSUMPTION: limit is equal to the number of computers AND the number of employees
-module.exports.generateEmployeeComputerRelationships = (limit) => {
+module.exports.generateEmployeeComputerRelationships = (employees, computers) => {
   let employeeComputerRelationships = [];
-  for (let i=0; i<limit; i++) {
-    let computer_id = Math.floor(Math.random()*limit)+1;
-    let employee_id = Math.floor(Math.random()*limit)+1;
+  for (let i=0; i<computers.length; i++) {
+    let computer_id = computers[i].computer_id;
+    let employee_id = computers[i].employee_id;
     let start_date = faker.date.past(5, new Date());
     let end_date = faker.date.between(start_date, new Date());
     employeeComputerRelationships.push({
