@@ -2,7 +2,7 @@
 
 const appRoot = process.cwd();
 
-const { getSingleProduct, getAllProducts } = require(appRoot + "/models/ProductsModel");
+const { getSingleProduct, getAllProducts } = require(appRoot + "/models/products/ProductsModel");
 
 module.exports.getAllProducts = (req, res, next) =>
   getAllProducts()
@@ -11,7 +11,7 @@ module.exports.getAllProducts = (req, res, next) =>
     })
     .catch(err => next(err));
 
-module.exports.getAllProducts = (req, res, next) =>
+module.exports.getSingleProduct = (req, res, next) =>
   getSingleProduct(req.params.id)
     .then(product => {
       res.status(200).json(product);
