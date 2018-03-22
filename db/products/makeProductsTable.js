@@ -16,7 +16,7 @@ module.exports = () => {
         description TEXT,
         product_type_id INTEGER,
         creator_id INTEGER,
-        FOREIGN KEY (product_type_id) REFERENCES Product_Type(product_type_id),
+        FOREIGN KEY (product_type_id) REFERENCES Product_Types(product_type_id),
         FOREIGN KEY (creator_id) REFERENCES Customers(customer_id)`,
       dataToIterateOver: products,
       valuesToInsert: [
