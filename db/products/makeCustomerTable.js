@@ -1,7 +1,33 @@
 'use strict';
 
 module.exports = () => {
-// function that creates customer table
+  generateSqlTable(
+    {
+      tableName: `Customers`,
+      columns:
+      `customer_id INTEGER PRIMARY KEY,
+      first_name TEXT,
+      last_name TEXT,
+      account_creation_date TEXT,
+      street_address TEXT,
+      city TEXT,
+      state TEXT,
+      postal_code TEXT,
+      phone_number TEXT`,
+      dataToIterateOver: customers,
+      valuesToInsert: [
+        `customer_id`,
+        `first_name`,
+        `last_name`,
+        `account_creation_date`,
+        `street_address`,
+        `city`,
+        `state`,
+        `postal_code`,
+        `phone_number`
+      ]
+    }
+  );
 }
 
 
