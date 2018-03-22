@@ -25,7 +25,10 @@ generateSqlTable(
 );
 */
 
-const escapeSingleQuotes = stringValue => stringValue.replace("'", "''");
+const escapeSingleQuotes = value => 
+  typeof value === 'string' 
+    ? value.replace("'", "''") 
+    : value;
 
 // Drops the table if exists, then creates it and inserts the data from dataToIterateOver.
 // Values to Insert is what properties on each peice of data to iterate over that should be extracted
