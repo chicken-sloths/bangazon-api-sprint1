@@ -37,7 +37,7 @@ const putProduct = (id, { price, title, description, product_type_id, creator_id
       err => err ? reject(err) : resolve(id));
   });
 
-const deleteProduct = id =>   
+const deleteProduct = id =>
   new Promise((resolve, reject) => {
     db.run(`DELETE FROM Products
       WHERE product_id = ${id}`,

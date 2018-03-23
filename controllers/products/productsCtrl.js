@@ -35,8 +35,8 @@ module.exports.deleteProduct = (req, res, next) => {
 };
 
 module.exports.putProduct = (req, res, next) => {
-  let { price, title, description, product_type_id, creator_id } = req.body;
-  
+  const { price, title, description, product_type_id, creator_id } = req.body;
+
   if (price && title && description && product_type_id && creator_id) {
     putProduct(req.params.id, req.body)
       .then(productId => {
@@ -44,7 +44,7 @@ module.exports.putProduct = (req, res, next) => {
       })
       .catch(err => next(err));
   } else {
-    let err = new Error("Please supply a `price`, `title`, `description`, `product_type_id`, and `creator_id.");
+    let err = new Error('Please supply a `price`, `title`, `description`, `product_type_id`, and `creator_id.');
     next(err);
   }
 };
