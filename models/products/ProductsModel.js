@@ -17,7 +17,13 @@ const getAllProducts = () => new Promise((resolve, reject) =>
     (err, products) => err ? reject(err) : resolve(products)
   ));
 
-const putProduct = () => { };
+const putProduct = (id, { price, title, description, product_type_id, creator_id }) =>
+  new Promise((resolve, reject) => {
+    db.run(`REPLACE INTO Products
+      (product_id, price, title, description, product_type_id, creator_id)
+      values (${id}, '${price}','${title}','${description}','${product_type_id}','${creator_id}')`,
+      err => err ? reject(err) : resolve(id));
+    });
 
 const deleteProduct = () => { };
 

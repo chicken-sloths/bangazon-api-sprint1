@@ -1,6 +1,6 @@
 "use strict";
 const appRoot = process.cwd();
-const { getSingleProduct, getAllProducts, postProduct } = require(appRoot + "/models/products/ProductsModel");
+const { getSingleProduct, getAllProducts, postProduct, putProduct } = require(appRoot + "/models/products/ProductsModel");
 
 module.exports.getAllProducts = (req, res, next) => {
   getAllProducts()
@@ -24,4 +24,19 @@ module.exports.postProduct = (req, res, next) => {
       res.status(200).json(productId);
     })
     .catch(err => next(err));
+};
+
+module.exports.putProduct = (req, res, next) => {
+  let { price, title, description, product_type_id, creator_id } = req.body;
+  
+  if (price && title && description && product_type_id && creator_id) {
+    putProduct(req.params.id, req.body)
+      .then(productId => {
+        res.status(200).json(productId);
+      })
+      .catch(err => next(err));
+  } else {
+    let err = new Error("Please supply a `price`, `title`, `description`, `product_type_id`, and `creator_id.");
+    next(err);
+  }
 };
