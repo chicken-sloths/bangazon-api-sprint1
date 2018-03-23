@@ -16,3 +16,13 @@ module.exports.getSingleProductType = id =>
       (err, data) => err ? reject(err) : resolve(data)
     )
   );
+
+module.exports.updateProductTypesTable = (id, title) =>
+  new Promise((resolve, reject) =>
+    db.run(`REPLACE INTO Product_Types (product_type_id, title)
+      VALUES(${id}, "${title}")`, function(err) {
+        err ? reject(err) : resolve(this.lastID);
+      }
+    )
+  );
+
