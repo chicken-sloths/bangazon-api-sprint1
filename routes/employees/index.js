@@ -6,7 +6,7 @@ const employeesIndexRouter = Router();
 employeesIndexRouter.use(require('./departments'));
 employeesIndexRouter.use('/employees', require('./employees'));
 employeesIndexRouter.use(require('./employeeComputers'));
-employeesIndexRouter.use(require('./computers'));
+employeesIndexRouter.use("/computers", require('./computers'));
 employeesIndexRouter.use(require('./trainingPrograms'));
 employeesIndexRouter.use(require('./employeeTrainingPrograms'));
 

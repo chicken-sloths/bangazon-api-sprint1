@@ -5,9 +5,9 @@ const appRoot = process.cwd();
 const { Router } = require('express');
 const productsRouter = Router();
 
-const controller = require(appRoot + '/controllers/products/productsCtrl');
+const { getSingleProduct, getAllProducts } = require(appRoot + '/controllers/products/productsCtrl');
 
-//TODO: routes & their corresponding controllers are enumerated here
-productsRouter.get('/', controller);
+productsRouter.get('/products/:id', getSingleProduct);
+productsRouter.get('/products/', getAllProducts);
 
 module.exports = productsRouter;
