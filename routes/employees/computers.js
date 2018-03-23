@@ -7,7 +7,8 @@ const {
   getAllComputers,
   getComputerById,
   createNewComputer,
-  deleteComputer
+  deleteComputer,
+  updateComputer
 } = require('../../controllers/employees/computersCtrl');
 
 // GET /computers
@@ -17,6 +18,6 @@ computersRouter.get('/:id', getComputerById);
 // POST /computers
 computersRouter.post("/", createNewComputer);
 computersRouter.delete("/:id", deleteComputer);
-// TODO: PUT /computers/1
+computersRouter.put("/:id", updateComputer);
 
 module.exports = computersRouter;

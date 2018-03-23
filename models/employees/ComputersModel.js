@@ -31,23 +31,18 @@ const getAllComputers = () => {
 // creates new computer with auto-incremented id, returns that id
 const createComputer = ({ mac_address, purchase_date, decommission_date }) => {
   return new Promise((resolve, reject) => {
-    if (mac_address && purchase_date && decommission_date) {
-      db.run(`INSERT INTO Computers (
-        mac_address,
-        purchase_date,
-        decommission_date
-      ) VALUES (
-        "${mac_address}",
-        "${purchase_date}",
-        "${decommission_date}"
-      )`, function(err) {
-        if (err) return reject(err);
-        resolve(this.lastID);
-      });
-    } else {
-      let err = new Error("Please supply a `mac_address`, `purchase_date`, and `decommission_date`.");
-      reject(err);
-    }
+    db.run(`INSERT INTO Computers (
+      mac_address,
+      purchase_date,
+      decommission_date
+    ) VALUES (
+      "${mac_address}",
+      "${purchase_date}",
+      "${decommission_date}"
+    )`, function(err) {
+      if (err) return reject(err);
+      resolve(this.lastID);
+    });
   });
 }
 
@@ -67,9 +62,26 @@ const deleteComputer = id => {
   });
 };
 
+// update one computer by id
+const updateComputer = (id, {mac_address, purchase_date, decommission_date}) => {
+  return new Promise((resolve, reject) => {
+    db.run(`UPDATE Computers
+            SET
+              mac_address="${mac_address}",
+              purchase_date="${purchase_date}",
+              decommission_date="${decommission_date}"
+            WHERE computer_id = ${id}`,
+      err => {
+        if (err) return reject(err);
+        resolve(id);
+      });
+  });
+};
+
 module.exports = {
   getSingleComputer,
   getAllComputers,
   createComputer,
-  deleteComputer
+  deleteComputer,
+  updateComputer
 };
