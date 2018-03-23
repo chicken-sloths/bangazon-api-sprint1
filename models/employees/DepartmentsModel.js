@@ -28,7 +28,7 @@ module.exports.getSingleDepartment = (id) => {
 // PUT
 
 //creates a new department with data from req.body
-module.exports.createDepartment = ({supervisor_id, expense_budget, name}) => {
+module.exports.createDepartment = ({ supervisor_id, expense_budget, name }) => {
   return new Promise((resolve, reject) => {
     db.run(`INSERT INTO Departments (
       supervisor_id,
@@ -39,27 +39,36 @@ module.exports.createDepartment = ({supervisor_id, expense_budget, name}) => {
       ${expense_budget},
       "${name}"
     )`, error => {
-      if(error) return reject(error);
-      resolve(this.lastID);
-    })
+        if (error) return reject(error);
+        resolve(this.lastID);
+      })
   })
 }
 
 // updates an existing department 
-module.exports.updateDepartment = (id, {supervisor_id, expense_budget, name}) => {
+module.exports.updateDepartment = (id, { supervisor_id, expense_budget, name }) => {
   return new Promise((resolve, reject) => {
-    db.run(`UPDATE Departments 
-    SET
-      supervisor_id=${supervisor_id},
-      expense_budget=${expense_budget},
-      name="${name}"
-    WHERE department_id = ${id}`,
-    error => {
-      if(error) return reject(error);
-      resolve(id);
-    });
+    db.run(`REPLACE INTO Departments( 
+      department_id,
+      supervisor_id,
+      expense_budget,
+      name
+    ) VALUES (
+      ${id},
+      ${supervisor_id},
+      ${expense_budget},
+      "${name}"
+    )`,
+      error => {
+        if (error) return reject(error);
+        resolve(id);
+      });
   });
 }
+
+// REPLACE INTO Products
+//   (product_id, price, title, description, product_type_id, creator_id)
+// values(${ id }, '${price}', '${title}', '${description}', '${product_type_id}', '${creator_id}')
 
 
 
