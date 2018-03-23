@@ -2,6 +2,7 @@
 
 const computers = require("../../models/employees/ComputersModel");
 
+// gets one computer by id; throws error if none
 module.exports.getComputerById = (req, res, next) => {
   computers.getSingleComputer(req.params.id)
     .then(data => {
@@ -15,6 +16,7 @@ module.exports.getComputerById = (req, res, next) => {
     .catch(err => next(err));
 };
 
+// gets all computers; throws an error if none
 module.exports.getAllComputers = (req, res, next) => {
   computers.getAllComputers()
     .then(data => {
@@ -28,6 +30,7 @@ module.exports.getAllComputers = (req, res, next) => {
     .catch(err => next(err));
 }
 
+// creates a new computer with info from req.body
 module.exports.createNewComputer = (req, res, next) => {
   // ready to catch a SyntaxError (bad JSON)
   try {
@@ -40,4 +43,13 @@ module.exports.createNewComputer = (req, res, next) => {
     let err = new Error(`${e.name}: ${e.message}.`);
     next(err);
   }
+};
+
+// delete computer by id
+module.exports.deleteComputer = (req, res, next) => {
+  computers.deleteComputer(req.params.id)
+    .then(id => {
+      res.status(200).json(id);
+    })
+    .catch(err => next(err));
 };
