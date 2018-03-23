@@ -17,7 +17,9 @@ computersRouter.get('/', getAllComputers);
 computersRouter.get('/:id', getComputerById);
 // POST /computers
 computersRouter.post("/", createNewComputer);
+// DELETE /computers/1
 computersRouter.delete("/:id", deleteComputer);
+// PUT /computers/1
 computersRouter.put("/:id", updateComputer);
 
 module.exports = computersRouter;
