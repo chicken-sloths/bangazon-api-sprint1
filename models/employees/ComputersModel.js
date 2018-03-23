@@ -65,12 +65,18 @@ const deleteComputer = id => {
 // update one computer by id
 const updateComputer = (id, {mac_address, purchase_date, decommission_date}) => {
   return new Promise((resolve, reject) => {
-    db.run(`UPDATE Computers
-            SET
-              mac_address="${mac_address}",
-              purchase_date="${purchase_date}",
-              decommission_date="${decommission_date}"
-            WHERE computer_id = ${id}`,
+    db.run(`REPLACE INTO Computers
+            (
+              computer_id,
+              mac_address,
+              purchase_date,
+              decommission_date
+            ) VALUES (
+              ${id},
+              "${mac_address}",
+              "${purchase_date}",
+              "${decommission_date}"
+            )`,
       err => {
         if (err) return reject(err);
         resolve(id);
