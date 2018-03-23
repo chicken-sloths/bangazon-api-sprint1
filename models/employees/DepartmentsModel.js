@@ -38,7 +38,7 @@ module.exports.createDepartment = ({ supervisor_id, expense_budget, name }) => {
       ${supervisor_id},
       ${expense_budget},
       "${name}"
-    )`, error => {
+    )`, function(error) {
         if (error) return reject(error);
         resolve(this.lastID);
       })
@@ -59,7 +59,7 @@ module.exports.updateDepartment = (id, { supervisor_id, expense_budget, name }) 
       ${expense_budget},
       "${name}"
     )`,
-      error => {
+      function(error){
         if (error) return reject(error);
         resolve(id);
       });
