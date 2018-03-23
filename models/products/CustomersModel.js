@@ -45,8 +45,51 @@ const getFrugalCustomers = () =>{
   });
 };
 
+const postNew = ({first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) =>{
+  return new Promise((resolve, reject)=>{
+    db.run(`
+    INSERT INTO "Customers" 
+    ("customer_id", "first_name", "last_name", "account_creation_date", "street_address", "city", "state", "postal_code", "phone_number")
+    VALUES (null,
+            "${first_name}",
+            "${last_name}",
+            "${account_creation_date}",
+            "${street_address}",
+            "${city}",
+            "${state}",
+            "${postal_code}",
+            "${phone_number}"
+    );`, function(error){
+      if(error) reject(error);
+      resolve(this.lastID);
+    });
+  });
+};
+
+const updateOne = (id, {first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) => {
+  return new Promise((resolve, reject) => {
+    db.run(`UPDATE Customers
+            SET
+            first_name="${first_name}",
+            last_name="${last_name}",
+            account_creation_date="${account_creation_date}",
+            street_address="${street_address}",
+            city="${city}",
+            state="${state}",
+            postal_code="${postal_code}",
+            phone_number="${phone_number}"
+            WHERE customer_id = ${id}`,
+      err => {
+        if (err) return reject(err);
+        resolve(id);
+      });
+  });
+};
+
 module.exports = { 
   getAll,
   getOne,
-  getFrugalCustomers
+  getFrugalCustomers,
+  postNew,
+  updateOne
 };
