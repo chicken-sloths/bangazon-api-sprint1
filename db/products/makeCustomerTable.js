@@ -7,7 +7,7 @@ module.exports = () => {
     {
       tableName: `Customers`,
       columns:
-      `customer_id INTEGER PRIMARY KEY,
+      `customer_id INTEGER PRIMARY KEY AUTO_INCREMENT,
       first_name TEXT,
       last_name TEXT,
       account_creation_date TEXT,

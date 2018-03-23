@@ -1,7 +1,7 @@
 "use strict";
 
 const appRoot = process.cwd();
-const { getAll, getOne, getFrugalCustomers } = require(appRoot + "/models/products/CustomersModel");
+const { getAll, getOne, getFrugalCustomers, postNew } = require(appRoot + "/models/products/CustomersModel");
 
 const getAllCustomers = (req, res, next) =>{
   // This checks for the exact query url that was listed 
@@ -15,6 +15,7 @@ const getAllCustomers = (req, res, next) =>{
     next(error);
   });
   }else{
+    // This will return all of the customers if no query is found
     getAll()
     .then((customers)=>{
       res.status(200).json(customers);
@@ -35,8 +36,25 @@ const getOneCustomer = (req, res, next) =>{
   });
 };
 
+const postNewCustomer = (req, res, next) =>{
+  console.log('req body',req.body);
+  try{
+    postNew(req.body)
+    .then(newData=>{
+      res.status(200).json(newData);
+    })
+    .catch(err=>{
+      console.log('err in ctrl:',err);
+      next(err);
+    });
+  } catch(e) {
+    let err = new Error(`${e.name}:, ${e.message}`);
+    next(err);
+  }
+};
 
 module.exports = { 
   getAllCustomers,
-  getOneCustomer
+  getOneCustomer,
+  postNewCustomer
  };
