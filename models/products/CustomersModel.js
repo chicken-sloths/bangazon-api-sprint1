@@ -68,7 +68,7 @@ const postNew = ({first_name, last_name, account_creation_date, street_address, 
 
 const updateOne = (id, {first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) => {
   return new Promise((resolve, reject) => {
-    db.run(`UPDATE Customers
+    db.run(`REPLACE Customers
             SET
             first_name="${first_name}",
             last_name="${last_name}",
