@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 require('dotenv').config();
-const bodyParser = reqiure('body-parser');
+const bodyParser = require('body-parser');
 const routes = require('./routes/index.js');
 
 // Middleware stack
