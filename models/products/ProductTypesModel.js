@@ -26,3 +26,11 @@ module.exports.updateProductTypesTable = (id, title) =>
     )
   );
 
+module.exports.deleteProductType = id =>
+  new Promise((resolve, reject) =>
+    db.run(`DELETE FROM Product_Types WHERE product_type_id=${id}`,
+      function(err) {
+        err ? reject(err) : resolve(this.changes);
+      }
+    )
+  );

@@ -3,6 +3,7 @@
 const appRoot = process.cwd();
 
 const {
+  deleteProductType,
   getAllProductTypes,
   getSingleProductType,
   updateProductTypesTable
@@ -26,3 +27,7 @@ module.exports.updateProductTypesTable = (req, res, next) => {
   .catch(err => next(err));
 };
 
+module.exports.deleteProductType = (req, res, next) =>
+  deleteProductType(req.params.id)
+  .then(changes => res.status(200).json(changes))
+  .catch(err => next(err));

@@ -6,6 +6,7 @@ const { Router } = require('express');
 const productTypesRouter = Router();
 
 const {
+  deleteProductType,
   getAllProductTypes,
   getSingleProductType,
   updateProductTypesTable
@@ -15,5 +16,6 @@ productTypesRouter.get('/', getAllProductTypes);
 productTypesRouter.post('/', updateProductTypesTable);
 productTypesRouter.get('/:id', getSingleProductType);
 productTypesRouter.put('/:id', updateProductTypesTable);
+productTypesRouter.delete('/:id', deleteProductType);
 
 module.exports = productTypesRouter;
