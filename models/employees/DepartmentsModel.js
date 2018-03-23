@@ -24,5 +24,32 @@ module.exports.getSingleDepartment = (id) => {
   })
 }
 
+// POST
+// PUT
+
+//creates a new department with data from req.body
+module.exports.createDepartment = ({ supervisor_id, expense_budget, name}) => {
+  return new Promise((resolve, reject) => {
+    db.run(`INSERT INTO Departments (
+      supervisor_id,
+      expense_budget,
+      name
+    ) VALUES (
+      "${supervisor_id}",
+      "${expense_budget}",
+      "${name}"
+    )`, function (error){
+      if(error) return reject(error);
+      resolve(this.lastID);
+    })
+  })
+}
+
+// updates an existing department 
+module.exports.updateDepartment = (id) => {
+
+}
+
+
 
 
