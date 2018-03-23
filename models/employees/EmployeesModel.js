@@ -33,3 +33,20 @@ module.exports.postEmployee = (first_name, last_name, department_id) =>
     )
   );
 
+module.exports.putEmployee = (id, first_name, last_name, department_id) =>
+  new Promise((resolve, reject) =>
+    db.run(`REPLACE INTO Employees(
+        employee_id,
+        first_name,
+        last_name,
+        department_id
+      )
+      VALUES (
+        ${id},
+        "${first_name}",
+        "${last_name}",
+        "${department_id}"
+      )`,
+      err => err ? reject(err) : resolve(id)
+    )
+  );
