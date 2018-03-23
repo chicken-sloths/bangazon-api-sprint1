@@ -1,6 +1,6 @@
 "use strict";
 const appRoot = process.cwd();
-const { getSingleProduct, getAllProducts, postProduct, putProduct } = require(appRoot + "/models/products/ProductsModel");
+const { getSingleProduct, getAllProducts, postProduct, putProduct, deleteProduct } = require(appRoot + "/models/products/ProductsModel");
 
 module.exports.getAllProducts = (req, res, next) => {
   getAllProducts()
@@ -22,6 +22,14 @@ module.exports.postProduct = (req, res, next) => {
   postProduct(req.body)
     .then(productId => {
       res.status(200).json(productId);
+    })
+    .catch(err => next(err));
+};
+
+module.exports.deleteProduct = (req, res, next) => {
+  deleteProduct(req.params.id)
+    .then(successfulDelete => {
+      res.status(200).json(successfulDelete);
     })
     .catch(err => next(err));
 };
