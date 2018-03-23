@@ -7,11 +7,13 @@ const productTypesRouter = Router();
 
 const {
   getAllProductTypes,
-  getSingleProductType
+  getSingleProductType,
+  updateProductTypesTable
 } = require(appRoot + '/controllers/products/productTypesCtrl');
 
-//TODO: routes & their corresponding controllers are enumerated here
-productTypesRouter.get('/:id', getSingleProductType);
 productTypesRouter.get('/', getAllProductTypes);
+productTypesRouter.post('/', updateProductTypesTable);
+productTypesRouter.get('/:id', getSingleProductType);
+productTypesRouter.put('/:id', updateProductTypesTable);
 
 module.exports = productTypesRouter;
