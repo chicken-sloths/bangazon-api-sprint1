@@ -29,7 +29,12 @@ module.exports.postProduct = (req, res, next) => {
 module.exports.deleteProduct = (req, res, next) => {
   deleteProduct(req.params.id)
     .then(successfulDelete => {
-      res.status(200).json(successfulDelete);
+      if(successfulDelete){
+        res.status(200).json(successfulDelete);
+      } else {
+        const err = new Error('The product could not be deleted.  It may not exist.');
+        next(err);
+      }
     })
     .catch(err => next(err));
 };
@@ -44,7 +49,7 @@ module.exports.putProduct = (req, res, next) => {
       })
       .catch(err => next(err));
   } else {
-    let err = new Error('Please supply a `price`, `title`, `description`, `product_type_id`, and `creator_id.');
+    const err = new Error('Please supply a `price`, `title`, `description`, `product_type_id`, and `creator_id.');
     next(err);
   }
 };

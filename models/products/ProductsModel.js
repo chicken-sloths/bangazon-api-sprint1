@@ -34,14 +34,18 @@ const putProduct = (id, { price, title, description, product_type_id, creator_id
       '${product_type_id}', 
       '${creator_id}'
     )`,
-      err => err ? reject(err) : resolve(id));
+    function(err) {
+      return err ? reject(err) : resolve(this.lastID);
+    })
   });
 
 const deleteProduct = id =>
   new Promise((resolve, reject) => {
     db.run(`DELETE FROM Products
       WHERE product_id = ${id}`,
-      err => err ? reject(err) : resolve(id));
+      function(err) {
+        return err ? reject(err) : resolve(this.changes);
+      })
   });
 
 const postProduct = ({ price, title, description, product_type_id, creator_id }) =>
@@ -58,7 +62,9 @@ const postProduct = ({ price, title, description, product_type_id, creator_id })
       '${description}',
       '${product_type_id}',
       '${creator_id}'
-    )`, err => err ? reject(err) : resolve(this.lastID));
+    )`, function(err) {
+      return err ? reject(err) : resolve(this.lastID);
+    })
   });
 
 module.exports = {
