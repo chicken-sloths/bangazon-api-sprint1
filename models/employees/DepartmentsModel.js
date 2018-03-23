@@ -66,10 +66,5 @@ module.exports.updateDepartment = (id, { supervisor_id, expense_budget, name }) 
   });
 }
 
-// REPLACE INTO Products
-//   (product_id, price, title, description, product_type_id, creator_id)
-// values(${ id }, '${price}', '${title}', '${description}', '${product_type_id}', '${creator_id}')
-
-
 
 
