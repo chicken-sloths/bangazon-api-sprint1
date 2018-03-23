@@ -68,17 +68,19 @@ const postNew = ({first_name, last_name, account_creation_date, street_address, 
 
 const updateOne = (id, {first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) => {
   return new Promise((resolve, reject) => {
-    db.run(`UPDATE Customers
-            SET
-            first_name="${first_name}",
-            last_name="${last_name}",
-            account_creation_date="${account_creation_date}",
-            street_address="${street_address}",
-            city="${city}",
-            state="${state}",
-            postal_code="${postal_code}",
-            phone_number="${phone_number}"
-            WHERE customer_id = ${id}`,
+    db.run(`REPLACE INTO Customers
+            (customer_id, first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number)
+            VALUES (
+            ${id},
+            "${first_name}",
+            "${last_name}",
+            "${account_creation_date}",
+            "${street_address}",
+            "${city}",
+            "${state}",
+            "${postal_code}",
+            "${phone_number}"
+            )`,
       err => {
         if (err) return reject(err);
         resolve(id);
