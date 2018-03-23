@@ -10,7 +10,7 @@ const routes = require('./routes/index.js');
 // Middleware stack
 app.use(bodyParser.json());
 
-app.use('api/v1', routes);
+app.use('/api/v1', routes);
 
 // End middleware stack
 
