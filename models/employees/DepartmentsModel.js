@@ -28,17 +28,17 @@ module.exports.getSingleDepartment = (id) => {
 // PUT
 
 //creates a new department with data from req.body
-module.exports.createDepartment = ({ supervisor_id, expense_budget, name}) => {
+module.exports.createDepartment = ({supervisor_id, expense_budget, name}) => {
   return new Promise((resolve, reject) => {
     db.run(`INSERT INTO Departments (
       supervisor_id,
       expense_budget,
       name
     ) VALUES (
-      "${supervisor_id}",
-      "${expense_budget}",
+      ${supervisor_id},
+      ${expense_budget},
       "${name}"
-    )`, function (error){
+    )`, error => {
       if(error) return reject(error);
       resolve(this.lastID);
     })
@@ -46,8 +46,19 @@ module.exports.createDepartment = ({ supervisor_id, expense_budget, name}) => {
 }
 
 // updates an existing department 
-module.exports.updateDepartment = (id) => {
-
+module.exports.updateDepartment = (id, {supervisor_id, expense_budget, name}) => {
+  return new Promise((resolve, reject) => {
+    db.run(`UPDATE Departments 
+    SET
+      supervisor_id=${supervisor_id},
+      expense_budget=${expense_budget},
+      name="${name}"
+    WHERE department_id = ${id}`,
+    error => {
+      if(error) return reject(error);
+      resolve(id);
+    });
+  });
 }
 
 
