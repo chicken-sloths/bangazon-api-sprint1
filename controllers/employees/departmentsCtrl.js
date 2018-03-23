@@ -1,9 +1,10 @@
 "use strict";
 
 const appRoot = process.cwd();
-const { getAllDepartments, getSingleDepartment } = require(appRoot + "/models/employees/DepartmentsModel");
+const { getAllDepartments, getSingleDepartment, createDepartment, updateDepartment } = require(appRoot + "/models/employees/DepartmentsModel");
 
-module.exports.getAllDepartments= (req, res, next) => {
+// gets all departments
+module.exports.getAllDepartments = (req, res, next) => {
   getAllDepartments()
     .then(departments => {
       res.status(200).json(departments);
@@ -13,6 +14,7 @@ module.exports.getAllDepartments= (req, res, next) => {
     })
 }
 
+// gets one department
 module.exports.getSingleDepartment = (req, res, next) => {
   getSingleDepartment(req.params.id)
     .then(department => {
@@ -23,3 +25,32 @@ module.exports.getSingleDepartment = (req, res, next) => {
     })
 }
 
+// updates an existing department
+module.exports.updateDepartment = (req, res, next) => {
+  let { supervisor_id, expense_budget, name } = req.body;
+  if (supervisor_id && expense_budget && name) {
+    updateDepartment(req.params.id, req.body)
+      .then(data => {
+        res.status(200).json(data);
+      })
+      .catch(error => next(error));
+  } else {
+    let error = new Error("Please supply a supervisor_id, expense_budget, and name");
+    next(error);
+  }
+}
+
+// creates a new department
+module.exports.createNewDepartment = (req, res, next) => {
+  let { supervisor_id, expense_budget, name } = req.body;
+  if (supervisor_id && expense_budget && name) {
+    createDepartment(req.body)
+      .then(data => {
+        res.status(200).json(data);
+      })
+      .catch(error => next(error));
+  } else {
+    let error = new Error("Please supply a supervisor_id, expense_budget, and name");
+    next(error);
+  }
+}
