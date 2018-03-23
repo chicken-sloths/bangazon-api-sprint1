@@ -5,13 +5,14 @@ const appRoot = process.cwd();
 const { Router } = require('express');
 const employeesRouter = Router();
 
-const { 
-  getAllEmployees, 
-  getSingleEmployee 
+const {
+  getAllEmployees,
+  getSingleEmployee,
+  postEmployee,
 } = require(appRoot + '/controllers/employees/employeesCtrl');
 
-//TODO: routes & their corresponding controllers are enumerated here
 employeesRouter.get('/', getAllEmployees);
+employeesRouter.post('/', postEmployee);
 employeesRouter.get('/:id', getSingleEmployee);
 
 module.exports = employeesRouter;

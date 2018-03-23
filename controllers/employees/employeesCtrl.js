@@ -4,7 +4,8 @@ const appRoot = process.cwd();
 
 const {
   getAllEmployees,
-  getSingleEmployee
+  getSingleEmployee,
+  postEmployee,
 } = require(appRoot + "/models/employees/EmployeesModel");
 
 module.exports.getAllEmployees = (req, res, next) =>
@@ -18,8 +19,14 @@ module.exports.getSingleEmployee = (req, res, next) =>
   .catch(err => next(err));
 
 module.exports.postEmployee = (req, res, next) => {
-  let { first_name = false, last_name = , department_id } = req.body;
-  postEmployee(req.body)
-  .then(() => res.status(201))
-  .catch(err => next(err))
+  let { first_name, last_name, department_id } = req.body;
+  if (first_name && last_name && department_id) {
+    postEmployee(first_name, last_name, department_id)
+    .then(resp => res.status(201).json(resp))
+    .catch(err => next(err));
+  } else {
+    next(new Error("Please include first_name, last_name, department_id"));
+  }
+};
+
 };
