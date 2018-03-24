@@ -4,11 +4,22 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./db/api-sprint.sqlite');
 
 module.exports.getSinglePaymentOption = id => {
-  
+  return new Promise((resolve, reject) => {
+    db.all(`SELECT * FROM Payment_Options
+            WHERE payment_option_id = ${id}`, (err, data) => {
+      if (err) return reject(err);
+      resolve(data);
+    });
+  });
 };
 
 module.exports.getAllPaymentOptions = () => {
-  
+  return new Promise((resolve, reject) => {
+    db.all(`SELECT * FROM Payment_Options`, (err, data) => {
+      if (err) return reject(err);
+      resolve(data);
+    });
+  });
 };
 
 module.exports.createPaymentOption = ({type, account_number, customer_id}) => {
