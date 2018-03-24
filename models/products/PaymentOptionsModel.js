@@ -40,6 +40,22 @@ module.exports.createPaymentOption = ({type, account_number, customer_id}) => {
 };
 
 module.exports.updatePaymentOption = (id, {type, account_number, customer_id}) => {
+  return new Promise((resolve, reject) => {
+    db.run(`REPLACE INTO Payment_Options (
+      payment_option_id,
+      type,
+      account_number,
+      customer_id
+    ) VALUES (
+      ${id},
+      "${type}",
+      ${account_number},
+      ${customer_id}
+    )`, function(err) {
+      if (err) return reject(err);
+      resolve(this.lastID);
+    });
+  });
 };
 
 module.exports.deletePaymentOption = id => {
