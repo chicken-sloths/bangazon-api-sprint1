@@ -59,5 +59,10 @@ module.exports.updatePaymentOption = (id, {type, account_number, customer_id}) =
 };
 
 module.exports.deletePaymentOption = id => {
-
+  return new Promise((resolve, reject) => {
+    db.run(`DELETE FROM Payment_Options WHERE payment_option_id = ${id}`, err => {
+      if (err) return reject(err);
+      resolve(id);
+    });
+  });
 };
