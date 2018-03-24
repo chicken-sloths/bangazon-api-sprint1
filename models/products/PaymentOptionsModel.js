@@ -23,7 +23,20 @@ module.exports.getAllPaymentOptions = () => {
 };
 
 module.exports.createPaymentOption = ({type, account_number, customer_id}) => {
-  
+  return new Promise((resolve, reject) => {
+    db.run(`INSERT INTO Payment_Options (
+      type,
+      account_number,
+      customer_id
+    ) VALUES (
+      "${type}",
+      ${account_number},
+      ${customer_id}
+    )`, function(err) {
+      if (err) return reject(err);
+      resolve(this.lastID);
+    });
+  });
 };
 
 module.exports.updatePaymentOption = (id, {type, account_number, customer_id}) => {
