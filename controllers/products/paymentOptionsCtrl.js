@@ -1,9 +1,23 @@
 "use strict";
 
-const appRoot = process.cwd();
+const options = require("../../models/products/PaymentOptionsModel");
 
-const model = require(appRoot + "/models/PaymentOptionsModel");
+module.exports.getSinglePaymentOption = (req, res, next) => {
 
+};
 
+module.exports.getAllPaymentOptions = (req, res, next) => {
 
-module.exports = {  };
+};
+
+module.exports.createNewPaymentOption = (req, res, next) => {
+
+};
+
+module.exports.updatePaymentOption = (req, res, next) => {
+
+};
+
+module.exports.deletePaymentOption = (req, res, next) => {
+
+};
