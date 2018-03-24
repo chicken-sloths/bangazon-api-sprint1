@@ -5,7 +5,7 @@ const appRoot = process.cwd();
 const { Router } = require('express');
 const ordersRouter = Router();
 
-const {getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder}= require(appRoot + '/controllers/products/ordersCtrl');
+const { getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder } = require(appRoot + '/controllers/products/ordersCtrl');
 
 ordersRouter.get('/orders', getAllOrders);
 ordersRouter.get('/orders/:id', getSingleOrder);

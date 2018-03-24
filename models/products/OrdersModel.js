@@ -9,13 +9,13 @@ module.exports.getAllOrders = () => {
       FROM Orders
       JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
       JOIN Products ON Product_Orders.product_id = Products.product_id
-      GROUP BY Orders.order_id`, 
+      GROUP BY Orders.order_id`,
       (err, orders) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(orders);
-    })
+        if (err) {
+          reject(err);
+        }
+        resolve(orders);
+      })
   })
 }
 
@@ -35,7 +35,7 @@ module.exports.getSingleOrder = id => {
   })
 }
 
-module.exports.createOrder = ({customer_id, payment_option_id}) => {
+module.exports.createOrder = ({ customer_id, payment_option_id }) => {
   console.log('from model', customer_id, payment_option_id);
   return new Promise((resolve, reject) => {
     db.run(`INSERT INTO Orders(
@@ -44,15 +44,15 @@ module.exports.createOrder = ({customer_id, payment_option_id}) => {
     )VALUES(
       ${customer_id}, 
       ${payment_option_id}
-    )`, 
-    function (error) {
+    )`,
+      function (error) {
         if (error) return reject(error);
         resolve(this.lastID);
       })
   })
 }
 
-module.exports.updateOrder = (id, {customer_id, payment_option_id}) => {
+module.exports.updateOrder = (id, { customer_id, payment_option_id }) => {
   return new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Orders( 
       order_id,
@@ -73,8 +73,8 @@ module.exports.updateOrder = (id, {customer_id, payment_option_id}) => {
 module.exports.deleteOrder = id => {
   return new Promise((resolve, reject) => {
     db.run(`DELETE FROM Orders WHERE order_id = ${id}`,
-      function(error){
-        if(error) return reject(error);
+      function (error) {
+        if (error) return reject(error);
         resolve(id);
       }
     )
