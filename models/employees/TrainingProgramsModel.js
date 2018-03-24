@@ -4,7 +4,7 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./db/api-sprint.sqlite');
 
 // get single training program by id
-const getSingleTrainingProgram = id => {
+module.exports.getSingleTrainingProgram = id => {
   return new Promise((resolve, reject) => {
     db.all(`SELECT *
       FROM Training_Programs t
@@ -17,7 +17,7 @@ const getSingleTrainingProgram = id => {
 };
 
 // get all training programs
-const getAllTrainingPrograms = () => {
+module.exports.getAllTrainingPrograms = () => {
   return new Promise((resolve, reject) => {
     db.all(`SELECT *
             FROM Training_Programs t`,
@@ -29,7 +29,7 @@ const getAllTrainingPrograms = () => {
 };
 
 // add a new training program
-const createNewTrainingProgram = ({ start_date, end_date, max_capacity, name }) => {
+module.exports.createNewTrainingProgram = ({ start_date, end_date, max_capacity, name }) => {
   return new Promise((resolve, reject) => {
     db.run(`INSERT INTO Training_Programs (
       start_date,
@@ -49,7 +49,7 @@ const createNewTrainingProgram = ({ start_date, end_date, max_capacity, name }) 
 };
 
 // replace existing training program with provided data or create new training program
-const updateTrainingProgram = (id, { start_date, end_date, name, max_capacity }) => {
+module.exports.updateTrainingProgram = (id, { start_date, end_date, name, max_capacity }) => {
   return new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Training_Programs (
       training_program_id,
@@ -70,9 +70,12 @@ const updateTrainingProgram = (id, { start_date, end_date, name, max_capacity })
   });
 };
 
-module.exports = {
-  getSingleTrainingProgram,
-  getAllTrainingPrograms,
-  createNewTrainingProgram,
-  updateTrainingProgram
+// delete one training program by id
+module.exports.deleteTrainingProgram = id => {
+  return new Promise((resolve, reject) => {
+    db.run(`DELETE FROM Training_Programs WHERE training_program_id = ${id}`, err => {
+      if (err) return reject(err);
+      resolve(id);
+    })
+  });
 };

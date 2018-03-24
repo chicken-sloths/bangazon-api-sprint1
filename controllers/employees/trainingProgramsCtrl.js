@@ -54,3 +54,14 @@ module.exports.updateTrainingProgram = (req, res, next) => {
     next(err);
   }
 };
+
+// delete one training program by id
+module.exports.deleteTrainingProgram = (req, res, next) => {
+  if (req.params.id >= 0) {
+    programs.deleteTrainingProgram(req.params.id)
+      .then(id => {
+        res.status(200).json(id);
+      })
+      .catch(err => next(err));
+  }
+};

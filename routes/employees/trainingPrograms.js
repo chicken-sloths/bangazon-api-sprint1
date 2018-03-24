@@ -13,5 +13,7 @@ trainingProgramsRouter.get('/:id', controller.getTrainingProgramById);
 trainingProgramsRouter.post("/", controller.createNewTrainingProgram);
 // PUT /training-programs/1
 trainingProgramsRouter.put("/:id", controller.updateTrainingProgram);
+// DELETE /training-programs/1
+trainingProgramsRouter.delete("/:id", controller.deleteTrainingProgram);
 
 module.exports = trainingProgramsRouter;
