@@ -21,7 +21,7 @@ module.exports.getAllOrders = () => {
 
 module.exports.getSingleOrder = id => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT Orders.*, group_concat(Products.title, ", ") AS Products
+    db.all(`SELECT Orders.*, Products.*
       FROM Orders
       INNER JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
       INNER JOIN Products ON Product_Orders.product_id = Products.product_id
