@@ -23,12 +23,13 @@ module.exports.getSingleOrder = (id) => {
     db.all(`SELECT  Orders.*, group_concat(Products.title, ", ")
       FROM Orders
       INNER JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
-      INNER JOIN Products ON Product_Orders.product_id = Products.product_id`,
-      (err, orders) => {
+      INNER JOIN Products ON Product_Orders.product_id = Products.product_id
+      WHERE Order.Order_id = ${id}`,
+      (err, order) => {
         if (err) {
           reject(err);
         }
-        resolve(orders);
+        resolve(order);
       })
   })
 }
