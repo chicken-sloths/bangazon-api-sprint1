@@ -1,10 +1,11 @@
 "use strict";
 
 const appRoot = process.cwd();
-const { getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder } = require(appRoot + "/models/OrdersModel");
+const { getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder } = require(appRoot + "/models/products/OrdersModel");
 
 // gets all orders
 module.exports.getAllOrders = (req, res, next) => {
+  console.log("get all orders called");
   getAllOrders()
     .then(orders => {
       res.status(200).json(orders);

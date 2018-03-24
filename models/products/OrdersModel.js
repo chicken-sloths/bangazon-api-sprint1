@@ -5,10 +5,11 @@ const db = new sqlite3.Database('./db/api-sprint.sqlite');
 
 module.exports.getAllOrders = () => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT  Orders.*, group_concat(Products.title, ", ")
+    db.all(`SELECT  Orders.*, group_concat(Products.title, ", ") AS Products
       FROM Orders
-      INNER JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
-      INNER JOIN Products ON Product_Orders.product_id = Products.product_id`, 
+      JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
+      JOIN Products ON Product_Orders.product_id = Products.product_id
+      GROUP BY Orders.order_id`, 
       (err, orders) => {
       if (err) {
         reject(err);
@@ -17,6 +18,7 @@ module.exports.getAllOrders = () => {
     })
   })
 }
+
 
 module.exports.getSingleOrder = id => {
   return new Promise((resolve, reject) => {
