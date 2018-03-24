@@ -18,7 +18,7 @@ module.exports.getAllOrders = () => {
   })
 }
 
-module.exports.getSingleOrder = (id) => {
+module.exports.getSingleOrder = id => {
   return new Promise((resolve, reject) => {
     db.all(`SELECT  Orders.*, group_concat(Products.title, ", ")
       FROM Orders
@@ -66,6 +66,13 @@ module.exports.updateOrder = (id, {customer_id, payment_option_id}) => {
   });
 }
 
-module.exports.deleteOrder = (id) => {
-
+module.exports.deleteOrder = id => {
+  new Promise((resolve, reject) => {
+    db.run(`DELETE FROM Orders WHERE order_id = ${id}`,
+      function(error){
+        if(error) return reject(error);
+        resolve(this.lastID);
+      }
+    )
+  })
 }
