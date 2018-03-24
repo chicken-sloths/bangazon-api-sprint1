@@ -5,7 +5,7 @@ const db = new sqlite3.Database('./db/api-sprint.sqlite');
 
 module.exports.getAllOrders = () => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT  Orders.*, group_concat(Products.title, ", ") AS Products
+    db.all(`SELECT Orders.*, group_concat(Products.title, ", ") AS Products
       FROM Orders
       JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
       JOIN Products ON Product_Orders.product_id = Products.product_id
@@ -19,14 +19,13 @@ module.exports.getAllOrders = () => {
   })
 }
 
-
 module.exports.getSingleOrder = id => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT  Orders.*, group_concat(Products.title, ", ")
+    db.all(`SELECT Orders.*, group_concat(Products.title, ", ") AS Products
       FROM Orders
       INNER JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
       INNER JOIN Products ON Product_Orders.product_id = Products.product_id
-      WHERE Order.Order_id = ${id}`,
+      WHERE Orders.order_id =${id}`,
       (err, order) => {
         if (err) {
           reject(err);
@@ -37,14 +36,16 @@ module.exports.getSingleOrder = id => {
 }
 
 module.exports.createOrder = ({customer_id, payment_option_id}) => {
+  console.log('from model', customer_id, payment_option_id);
   return new Promise((resolve, reject) => {
-    db.run(`INSERT INTO Orders (
-      customer_id,
+    db.run(`INSERT INTO Orders(
+      customer_id, 
       payment_option_id
-    ) VALUES (
-      ${customer_id},
+    )VALUES(
+      ${customer_id}, 
       ${payment_option_id}
-    )`, function (error) {
+    )`, 
+    function (error) {
         if (error) return reject(error);
         resolve(this.lastID);
       })
@@ -54,6 +55,7 @@ module.exports.createOrder = ({customer_id, payment_option_id}) => {
 module.exports.updateOrder = (id, {customer_id, payment_option_id}) => {
   return new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Orders( 
+      order_id,
       customer_id,
       payment_option_id
     ) VALUES (
@@ -69,11 +71,11 @@ module.exports.updateOrder = (id, {customer_id, payment_option_id}) => {
 }
 
 module.exports.deleteOrder = id => {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     db.run(`DELETE FROM Orders WHERE order_id = ${id}`,
       function(error){
         if(error) return reject(error);
-        resolve(this.lastID);
+        resolve(id);
       }
     )
   })
