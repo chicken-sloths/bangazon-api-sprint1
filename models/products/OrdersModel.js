@@ -34,12 +34,36 @@ module.exports.getSingleOrder = (id) => {
   })
 }
 
-module.exports.createOrder = ({orderObject}) => {
-
+module.exports.createOrder = ({customer_id, payment_option_id}) => {
+  return new Promise((resolve, reject) => {
+    db.run(`INSERT INTO Orders (
+      customer_id,
+      payment_option_id
+    ) VALUES (
+      ${customer_id},
+      ${payment_option_id}
+    )`, function (error) {
+        if (error) return reject(error);
+        resolve(this.lastID);
+      })
+  })
 }
 
-module.exports.updateOrder = (id, {orderObject}) => {
-
+module.exports.updateOrder = (id, {customer_id, payment_option_id}) => {
+  return new Promise((resolve, reject) => {
+    db.run(`REPLACE INTO Orders( 
+      customer_id,
+      payment_option_id
+    ) VALUES (
+      ${id},
+      ${customer_id},
+      ${payment_option_id}
+    )`,
+      function (error) {
+        if (error) return reject(error);
+        resolve(this.lastID);
+      });
+  });
 }
 
 module.exports.deleteOrder = (id) => {
