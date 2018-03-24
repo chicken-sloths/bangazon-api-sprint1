@@ -36,7 +36,6 @@ module.exports.getSingleOrder = id => {
 }
 
 module.exports.createOrder = ({ customer_id, payment_option_id }) => {
-  console.log('from model', customer_id, payment_option_id);
   return new Promise((resolve, reject) => {
     db.run(`INSERT INTO Orders(
       customer_id, 

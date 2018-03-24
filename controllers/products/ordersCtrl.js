@@ -5,7 +5,6 @@ const { getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder } = 
 
 // gets all orders
 module.exports.getAllOrders = (req, res, next) => {
-  console.log("get all orders called");
   getAllOrders()
     .then(orders => {
       res.status(200).json(orders);
@@ -46,7 +45,6 @@ module.exports.updateOrder = (req, res, next) => {
 
 // deletes an order by id
 module.exports.deleteOrder = (req, res, next) => {
-  console.log("delete order called!");
   deleteOrder(req.params.id)
     .then(data => {
       res.status(200).json(data);
