@@ -3,14 +3,10 @@
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./db/api-sprint.sqlite');
 
-// Gets all orders and a stringified list of associated products
+// Gets all order data
 module.exports.getAllOrders = () => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT Orders.*, group_concat(Products.title, ", ") AS Products
-      FROM Orders
-      JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
-      JOIN Products ON Product_Orders.product_id = Products.product_id
-      GROUP BY Orders.order_id`,
+    db.all(`SELECT * FROM Orders`,
       (err, orders) => {
         if (err) {
           reject(err);
@@ -40,7 +36,7 @@ module.exports.getSingleOrder = id => {
         INNER JOIN Products ON Product_Orders.product_id = Products.product_id
         WHERE Orders.order_id = ${ id}`,
           (err, productData) => {
-            if (err) reject(err);
+            if (err) order.Products = [];
             order.Products = productData
             resolve(order);
           });
