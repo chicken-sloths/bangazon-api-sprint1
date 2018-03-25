@@ -36,7 +36,6 @@ const getOneCustomer = (req, res, next) =>{
 };
 
 const postNewCustomer = (req, res, next) =>{
-  console.log('req body',req.body);
   postNew(req.body)
   .then(newData=>{
     res.status(200).json(newData);
