@@ -5,9 +5,17 @@ const appRoot = process.cwd();
 const { Router } = require('express');
 const productTypesRouter = Router();
 
-const controller = require(appRoot + '/controllers/products/productTypesCtrl');
+const {
+  deleteProductType,
+  getAllProductTypes,
+  getSingleProductType,
+  updateProductTypesTable
+} = require(appRoot + '/controllers/products/productTypesCtrl');
 
-//TODO: routes & their corresponding controllers are enumerated here
-productTypesRouter.get('/', controller);
+productTypesRouter.get('/', getAllProductTypes);
+productTypesRouter.post('/', updateProductTypesTable);
+productTypesRouter.get('/:id', getSingleProductType);
+productTypesRouter.put('/:id', updateProductTypesTable);
+productTypesRouter.delete('/:id', deleteProductType);
 
 module.exports = productTypesRouter;
