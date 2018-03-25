@@ -2,6 +2,7 @@
 
 const options = require("../../models/products/PaymentOptionsModel");
 
+// get single payment option by id
 module.exports.getSinglePaymentOption = (req, res, next) => {
   options.getSinglePaymentOption(req.params.id)
     .then(data => {
@@ -15,6 +16,7 @@ module.exports.getSinglePaymentOption = (req, res, next) => {
     .catch(err => next(err));
 };
 
+// get all payment options
 module.exports.getAllPaymentOptions = (req, res, next) => {
   options.getAllPaymentOptions()
     .then(data => {
@@ -28,6 +30,7 @@ module.exports.getAllPaymentOptions = (req, res, next) => {
     .catch(err => next(err));
 };
 
+// create new payment option
 module.exports.createNewPaymentOption = (req, res, next) => {
   let { type, account_number, customer_id } = req.body;
   if (type && account_number && customer_id) {
@@ -42,6 +45,7 @@ module.exports.createNewPaymentOption = (req, res, next) => {
   }
 };
 
+// update one payment option by id
 module.exports.updatePaymentOption = (req, res, next) => {
   let { type, account_number, customer_id } = req.body;
   if (type && account_number && customer_id) {
@@ -56,6 +60,7 @@ module.exports.updatePaymentOption = (req, res, next) => {
   }
 };
 
+// delete one payment option by id
 module.exports.deletePaymentOption = (req, res, next) => {
   if (req.params.id >= 0) {
     options.deletePaymentOption(req.params.id)
