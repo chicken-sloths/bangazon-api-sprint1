@@ -15,10 +15,10 @@ module.exports.getAllDepartments = (req, res, next) =>
 // gets one department
 module.exports.getSingleDepartment = (req, res, next) =>
   getSingleDepartment(req.params.id)
-    .then(department =>
-      department.length >= 1 ?
+    .then(department =>{
+      department ?
       res.status(200).json(department) : res.status(204).send()
-    )
+    })
     .catch(err => next(err))
 
 // updates an existing department

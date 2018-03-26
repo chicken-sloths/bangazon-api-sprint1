@@ -18,7 +18,7 @@ module.exports.getAllEmployees = (req, res, next) =>
 module.exports.getSingleEmployee = (req, res, next) =>
   getSingleEmployee(req.params.id)
   .then(emp =>
-    emp.length >= 1 ? res.status(200).json(emp) : res.status(204).json()
+    emp ? res.status(200).json(emp) : res.status(204).json()
   )
   .catch(err => next(err));
 

@@ -6,7 +6,7 @@ const computers = require("../../models/employees/ComputersModel");
 module.exports.getComputerById = (req, res, next) => {
   computers.getSingleComputer(req.params.id)
     .then(data =>
-      data.length >= 1 ? res.status(200).json(data) : res.status(204).json()
+      data ? res.status(200).json(data) : res.status(204).json()
     )
     .catch(err => next(err));
 };

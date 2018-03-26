@@ -19,7 +19,7 @@ module.exports.getAllProducts = (req, res, next) => {
 module.exports.getSingleProduct = (req, res, next) => {
   getSingleProduct(req.params.id)
     .then(product =>
-      product.length >= 1 ? res.status(200).json(product) : res.status(204).send()
+      product ? res.status(200).json(product) : res.status(204).send()
     )
     .catch(err => next(err));
 };

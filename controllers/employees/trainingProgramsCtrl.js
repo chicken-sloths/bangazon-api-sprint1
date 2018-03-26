@@ -6,7 +6,7 @@ const programs = require("../../models/employees/TrainingProgramsModel");
 module.exports.getTrainingProgramById = (req, res, next) => {
   programs.getSingleTrainingProgram(req.params.id)
     .then(data =>
-      data.length >= 1 ? res.status(200).json(data) : res.status(204).json()
+      data ? res.status(200).json(data) : res.status(204).json()
     )
     .catch(err => next(err));
 };

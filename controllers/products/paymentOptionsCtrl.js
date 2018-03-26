@@ -6,7 +6,7 @@ const options = require("../../models/products/PaymentOptionsModel");
 module.exports.getSinglePaymentOption = (req, res, next) => {
   options.getSinglePaymentOption(req.params.id)
     .then(data =>
-      data.length >= 1 ? res.status(200).json(data) : res.status(204).send()
+      data ? res.status(200).json(data) : res.status(204).send()
     )
     .catch(err => next(err));
 };

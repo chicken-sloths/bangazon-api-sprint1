@@ -26,7 +26,7 @@ const getAllCustomers = (req, res, next) =>{
 const getOneCustomer = (req, res, next) =>{
   getOne(req.params.id)
   .then(customer =>
-    customer >= 1 ? res.status(200).json(customer) : res.status(204).send()
+    customer ? res.status(200).json(customer) : res.status(204).send()
   )
   .catch(err => next(err));
 };
