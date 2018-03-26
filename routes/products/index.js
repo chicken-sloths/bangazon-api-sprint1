@@ -8,6 +8,6 @@ productsIndexRouter.use(require('./products'));
 productsIndexRouter.use(require('./productOrders'));
 productsIndexRouter.use(require('./orders'));
 productsIndexRouter.use(require('./customers'));
-productsIndexRouter.use(require('./paymentOptions'));
+productsIndexRouter.use("/payment-options", require('./paymentOptions'));
 
 module.exports = productsIndexRouter;
