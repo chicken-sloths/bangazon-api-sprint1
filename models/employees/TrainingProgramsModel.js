@@ -28,26 +28,6 @@ module.exports.getAllTrainingPrograms = () => {
   });
 };
 
-// add a new training program
-module.exports.createNewTrainingProgram = ({ start_date, end_date, max_capacity, name }) => {
-  return new Promise((resolve, reject) => {
-    db.run(`INSERT INTO Training_Programs (
-      start_date,
-      end_date,
-      max_capacity,
-      name
-    ) VALUES (
-      "${start_date}",
-      "${end_date}",
-      "${max_capacity}",
-      "${name}"
-    )`, function (err) {
-        if (err) return reject(err);
-        resolve(this.lastID);
-      })
-  });
-};
-
 // replace existing training program with provided data or create new training program
 module.exports.updateTrainingProgram = (id, { start_date, end_date, name, max_capacity }) => {
   return new Promise((resolve, reject) => {
@@ -58,14 +38,14 @@ module.exports.updateTrainingProgram = (id, { start_date, end_date, name, max_ca
       name,
       max_capacity
     ) VALUES (
-      ${id},
+      ${id == undefined ? null : id},
       "${start_date}",
       "${end_date}",
       "${name}",
       ${max_capacity}
-    )`, err => {
+    )`, function(err) {
       if (err) return reject(err);
-      resolve(id);
+      resolve(this.lastID);
     })
   });
 };
