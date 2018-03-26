@@ -34,25 +34,6 @@ module.exports.getOrderProducts = id =>
       });
   });
 
-<<<<<<< HEAD
-
-// Creates a new order
-module.exports.createOrder = ({ customer_id, payment_option_id = null }) =>
-  new Promise((resolve, reject) => {
-    db.run(`INSERT INTO Orders(
-      customer_id,
-      payment_option_id
-    ) VALUES (
-      ${customer_id},
-      ${payment_option_id}
-    )`,
-      function (err) {
-        err ? reject(err) : resolve(this.lastID);
-      })
-  });
-
-=======
->>>>>>> master
 // Updates information on an order by id
 module.exports.updateOrder = (id, { customer_id, payment_option_id = null }) =>
   new Promise((resolve, reject) => {
