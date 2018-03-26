@@ -17,7 +17,7 @@ module.exports.getAll = () =>{
 
 module.exports.getOne = id =>{
   return new Promise((resolve, reject)=>{
-    db.all(
+    db.get(
       `SELECT Customers.* FROM Customers
       WHERE Customers.customer_id = ${id}`,
       (error, customer)=>{
@@ -32,12 +32,12 @@ module.exports.getOne = id =>{
 module.exports.getFrugalCustomers = () =>{
   return new Promise((resolve, reject)=>{
     db.all(`
-    SELECT Customers.* 
+    SELECT Customers.*
     FROM Customers
     LEFT JOIN Orders
     ON Customers.customer_id = Orders.customer_id
     WHERE Orders.customer_id IS NULL
-    `, 
+    `,
     (error, customers)=>{
       if (error) return reject(error);
         resolve(customers);
@@ -66,3 +66,4 @@ module.exports.updateOne = (id, {first_name, last_name, account_creation_date, s
       });
   });
 };
+

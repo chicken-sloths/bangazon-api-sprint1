@@ -13,8 +13,9 @@ module.exports.getAllCustomers = (req, res, next) => {
   // in the wiki page for customers in our repo
   if (req.query.active === "false") {
     getFrugalCustomers()
+
       .then((customers) => {
-        res.status(200).json(customers);
+    customers.length >= 1 ? res.status(200).json(customers) : res.status(204).send()
       })
       .catch(error => {
         next(error);
@@ -22,7 +23,7 @@ module.exports.getAllCustomers = (req, res, next) => {
   } else {
     getAll()
       .then((customers) => {
-        res.status(200).json(customers);
+     customers.length >= 1 ? res.status(200).json(customers) : res.status(204).send()
       })
       .catch(err => {
         next(err);
@@ -33,7 +34,7 @@ module.exports.getAllCustomers = (req, res, next) => {
 module.exports.getOneCustomer = (req, res, next) => {
   getOne(req.params.id)
     .then((customer) => {
-      res.status(200).json(customer);
+      customer ? res.status(200).json(customer) : res.status(204).send()
     })
     .catch(err => {
       next(err);
@@ -44,12 +45,13 @@ module.exports.updateCustomer = (req, res, next) => {
   let { first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number } = req.body;
   if (first_name && last_name && account_creation_date && street_address && city && state && postal_code && phone_number) {
     updateOne(req.params.id, req.body)
-      .then(data => {
-        res.status(200).json(data);
-      })
+      .then(data => res.status(200).json(data))
       .catch(err => next(err));
   } else {
-    let err = new Error("Please make sure the object has a value for each of these properties: first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number");
+    const err = new Error(
+      "Please include: first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number"
+    );
+    err.status = 400;
     next(err);
   }
 };
