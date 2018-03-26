@@ -1,7 +1,7 @@
 "use strict";
 
 const appRoot = process.cwd();
-const { getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder } = require(appRoot + "/models/products/OrdersModel");
+const { getAllOrders, getSingleOrder, getOrderProducts, createOrder, updateOrder, deleteOrder } = require(appRoot + "/models/products/OrdersModel");
 
 // gets all orders
 module.exports.getAllOrders = (req, res, next) => {
@@ -16,9 +16,20 @@ module.exports.getAllOrders = (req, res, next) => {
 
 // gets a single order by id
 module.exports.getSingleOrder = (req, res, next) => {
+  let order = null;
   getSingleOrder(req.params.id)
-    .then(order => {
-      res.status(200).json(order);
+    .then(orderData => {
+      order = orderData;
+      return getOrderProducts(req.params.id) 
+    })
+    .then(productData => {
+      if (order) {
+        order.Products = productData;
+        res.status(200).json(order);
+      } else {
+        res.status(404).send("Sorry! This order was not found.");
+      }
+      
     })
     .catch(error => {
       next(error);

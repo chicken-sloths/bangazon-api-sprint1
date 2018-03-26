@@ -16,33 +16,32 @@ module.exports.getAllOrders = () => {
   })
 }
 
-// Makes two calles to the database, one to get the order info and another to get an array of the products associated with that order
+// gets single order info
 module.exports.getSingleOrder = id => {
-  let order = null;
   return new Promise((resolve, reject) => {
-    db.serialize(() => {
-      
-      //grabs Order data and declares it to the empty order variable 
       db.get(`SELECT * FROM Orders WHERE order_id=${id}`,
-        (err, orderData) => {
+        (err, order) => {
           if (err) reject(err);
-          order = orderData;
-        });
-
-        //grabs an array of all products associated with that order, adds it as a property on the order variable
-        db.all(`SELECT Products.*
-        FROM Orders
-        INNER JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
-        INNER JOIN Products ON Product_Orders.product_id = Products.product_id
-        WHERE Orders.order_id = ${ id}`,
-          (err, productData) => {
-            if (err) order.Products = [];
-            order.Products = productData
-            resolve(order);
-          });
-    })
-  })
+          resolve(order)
+      });
+  });
 }
+
+// gets all products associated with a single order
+module.exports.getOrderProducts = id => {
+  return new Promise((resolve, reject) => {
+    db.all(`SELECT Products.*
+          FROM Orders
+          INNER JOIN Product_Orders ON Orders.order_id = Product_Orders.order_id
+          INNER JOIN Products ON Product_Orders.product_id = Products.product_id
+          WHERE Orders.order_id = ${ id}`,
+      (err, products) => {
+        if (err) reject (err);
+        resolve(products)
+      });
+  });
+}
+
 
 // Creates a new order
 module.exports.createOrder = ({ customer_id, payment_option_id }) => {
