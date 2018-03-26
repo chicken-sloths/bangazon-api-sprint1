@@ -4,22 +4,22 @@ Bangazon Corp API - Chicken Sloths Sprint 1 - NSS Day Cohort 23
 Welcome to the bangazon-api-sprint1 wiki!
 
 # API Documentation
-More information can be found on the [Bangazon Wiki](./wiki).
+More information can be found on the [Bangazon Wiki](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/).
 
 ### API Access Paths & Table Information
-- [Employee](./wiki/employee)
-- [Department](./wiki/department)
-- [Training_Program](./wiki/training_program)
-- [Computer](./wiki/computer)
-- [Customer](./wiki/customer)
-- [Product](./wiki/product)
-- [Order](./wiki/order)
-- [Payment_Option](./wiki/payment_option)
-- [Product_Type](./wiki/product_type)
+- [Employee](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/employee)
+- [Department](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/department)
+- [Training_Program](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/training_program)
+- [Computer](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/computer)
+- [Customer](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/customer)
+- [Product](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/product)
+- [Order](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/order)
+- [Payment_Option](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/payment_option)
+- [Product_Type](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/product_type)
 
 ### ERD
-- [Product ERD](./wiki/Products-ERD-Notes)
-- [Employee ERD](./wiki/Employee-ERD)
+- [Product ERD](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/Products-ERD-Notes)
+- [Employee ERD](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/Employee-ERD)
 
 # Contribution Guide
 [Helpful Contributing Documentation](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/CLI-Commands)
