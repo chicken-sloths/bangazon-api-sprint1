@@ -1,7 +1,7 @@
 "use strict";
 
 const appRoot = process.cwd();
-const { getAll, getOne, getFrugalCustomers } = require(appRoot + "/models/products/CustomersModel");
+const { getAll, getOne, getFrugalCustomers, postNew, updateOne } = require(appRoot + "/models/products/CustomersModel");
 
 const getAllCustomers = (req, res, next) =>{
   // This checks for the exact query url that was listed 
@@ -35,8 +35,34 @@ const getOneCustomer = (req, res, next) =>{
   });
 };
 
+const postNewCustomer = (req, res, next) =>{
+  postNew(req.body)
+  .then(newData=>{
+    res.status(200).json(newData);
+  })
+  .catch(err=>{
+    console.log('err in ctrl:',err);
+    next(err);
+  });
+};
+
+const updateCustomer = (req, res, next) => {
+  let { first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number } = req.body;
+  if (first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number) {
+    updateOne(req.params.id, req.body)
+      .then(data => {
+        res.status(200).json(data);
+      })
+      .catch(err => next(err));
+  } else {
+    let err = new Error("Please make sure the object has a value for each of these properties: first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number");
+    next(err);
+  }
+}; 
 
 module.exports = { 
   getAllCustomers,
-  getOneCustomer
- };
+  getOneCustomer,
+  postNewCustomer,
+  updateCustomer
+};
