@@ -7,7 +7,7 @@ const controller = require('../../controllers/employees/trainingProgramsCtrl');
 
 trainingProgramsRouter.get('/', controller.getAllTrainingPrograms);
 trainingProgramsRouter.get('/:id', controller.getTrainingProgramById);
-trainingProgramsRouter.post('/', controller.createNewTrainingProgram);
+trainingProgramsRouter.post('/', controller.updateTrainingProgram);
 trainingProgramsRouter.put('/:id', controller.updateTrainingProgram);
 trainingProgramsRouter.delete('/:id', controller.deleteTrainingProgram);
 
