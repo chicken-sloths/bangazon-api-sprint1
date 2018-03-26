@@ -6,7 +6,7 @@ const computers = require("../../models/employees/ComputersModel");
 module.exports.getComputerById = (req, res, next) => {
   computers.getSingleComputer(req.params.id)
     .then(data =>
-      data ? res.status(200).json(data) : res.status(204).json()
+      data ? res.status(200).json(data) : res.status(204).send()
     )
     .catch(err => next(err));
 };
@@ -15,7 +15,7 @@ module.exports.getComputerById = (req, res, next) => {
 module.exports.getAllComputers = (req, res, next) => {
   computers.getAllComputers()
     .then(data =>
-      data.length >= 1 ? res.status(200).json(data) : res.status(204).json()
+      data.length >= 1 ? res.status(200).json(data) : res.status(204).send()
     )
     .catch(err => next(err));
 }
@@ -23,7 +23,9 @@ module.exports.getAllComputers = (req, res, next) => {
 // delete computer by id
 module.exports.deleteComputer = (req, res, next) => {
   computers.deleteComputer(req.params.id)
-    .then(id => res.status(200).json(id))
+    .then(changes =>
+      changes >= 1 ? res.status(200).json(changes) : res.status(204).send()
+    )
     .catch(err => next(err));
 };
 

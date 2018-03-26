@@ -29,20 +29,15 @@ module.exports.getAllComputers = () => {
 };
 
 // delete one computer by id
-module.exports.deleteComputer = id => {
-  return new Promise((resolve, reject) => {
-    getSingleComputer(id)
-      .then(computer => {
-        db.run(`DELETE FROM Computers
-                WHERE computer_id = ${id}`,
-        function(err) {
-          if (err) return reject(err);
-          resolve(this.changes);
-        });
-      })
-      .catch(err => reject(err));
-  });
-};
+module.exports.deleteComputer = id =>
+  new Promise((resolve, reject) =>
+    db.run(`DELETE FROM Computers WHERE computer_id = ${id}`,
+      function(err) {
+        if (err) return reject(err);
+        resolve(this.changes);
+      }
+    )
+  );
 
 // update one computer by id
 module.exports.updateComputer = (id, {mac_address, purchase_date, decommission_date}) => {
