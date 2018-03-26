@@ -6,7 +6,7 @@ const programs = require("../../models/employees/TrainingProgramsModel");
 module.exports.getTrainingProgramById = (req, res, next) => {
   programs.getSingleTrainingProgram(req.params.id)
     .then(data =>
-      data ? res.status(200).json(data) : res.status(204).json()
+      data ? res.status(200).json(data) : res.status(204).send()
     )
     .catch(err => next(err));
 };
@@ -15,7 +15,7 @@ module.exports.getTrainingProgramById = (req, res, next) => {
 module.exports.getAllTrainingPrograms = (req, res, next) => {
   programs.getAllTrainingPrograms()
     .then(data =>
-      data.length >= 1? res.status(200).json(data) : res.status(204).json()
+      data.length >= 1? res.status(200).json(data) : res.status(204).send()
     )
     .catch(err => next(err));
 };
@@ -42,9 +42,9 @@ module.exports.updateTrainingProgram = (req, res, next) => {
 module.exports.deleteTrainingProgram = (req, res, next) => {
   if (req.params.id >= 0) {
     programs.deleteTrainingProgram(req.params.id)
-      .then(id => {
-        res.status(200).json(id);
-      })
+      .then(changes =>
+        changes >= 1 : res.status(200).json(changes) : res.status(204).send()
+      )
       .catch(err => next(err));
   }
 };
