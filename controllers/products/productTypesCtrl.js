@@ -39,5 +39,7 @@ module.exports.updateProductTypesTable = (req, res, next) => {
 
 module.exports.deleteProductType = (req, res, next) =>
   deleteProductType(req.params.id)
-  .then(changes => res.status(200).json(changes))
+  .then(changes =>
+    changes >= 1 ? res.status(200).json(changes) : res.status(204).send()
+  )
   .catch(err => next(err));
