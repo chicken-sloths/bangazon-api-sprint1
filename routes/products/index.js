@@ -3,10 +3,10 @@
 const { Router } = require('express');
 const productsIndexRouter = Router();
 
-productsIndexRouter.use('/products', require('./products'));
-productsIndexRouter.use('/product-types', require('./productTypes'));
-productsIndexRouter.use('/orders', require('./orders'));
-productsIndexRouter.use('/customers', require('./customers'));
-productsIndexRouter.use('/payment-options', require('./paymentOptions'));
+productsIndexRouter.use('/products', require('./productsRouter'));
+productsIndexRouter.use('/product-types', require('./productTypesRouter'));
+productsIndexRouter.use('/orders', require('./ordersRouter'));
+productsIndexRouter.use('/customers', require('./customersRouter'));
+productsIndexRouter.use('/payment-options', require('./paymentOptionsRouter'));
 
 module.exports = productsIndexRouter;
