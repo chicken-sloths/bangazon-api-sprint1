@@ -19,10 +19,10 @@ module.exports.getAllOrders = () => {
 // gets single order info
 module.exports.getSingleOrder = id => {
   return new Promise((resolve, reject) => {
-      db.get(`SELECT * FROM Orders WHERE order_id=${id}`,
-        (err, order) => {
-          if (err) reject(err);
-          resolve(order)
+    db.get(`SELECT * FROM Orders WHERE order_id=${id}`,
+      (err, order) => {
+        if (err) reject(err);
+        resolve(order)
       });
   });
 }
@@ -36,48 +36,23 @@ module.exports.getOrderProducts = id => {
           INNER JOIN Products ON Product_Orders.product_id = Products.product_id
           WHERE Orders.order_id = ${ id}`,
       (err, products) => {
-        if (err) reject (err);
+        if (err) reject(err);
         resolve(products)
       });
   });
 }
 
-
-// Creates a new order
-module.exports.createOrder = ({ customer_id, payment_option_id }) => {
-  // if no payment option id was passed in, declare the payment option id as null.
-  if(!payment_option_id) payment_option_id = null; 
-
-  return new Promise((resolve, reject) => {
-    db.run(`INSERT INTO Orders(
-      customer_id, 
-      payment_option_id
-    )VALUES(
-      ${customer_id}, 
-      ${payment_option_id}
-    )`,
-      function (error) {
-        if (error) return reject(error);
-        resolve(this.lastID);
-      })
-  })
-}
-
 // Updates information on an order by id
 module.exports.updateOrder = (id, { customer_id, payment_option_id }) => {
-  
-  // if no payment option id was passed in, declare the payment option id as null.
-  if (!payment_option_id) payment_option_id = null; 
-
   return new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Orders( 
       order_id,
       customer_id,
       payment_option_id
     ) VALUES (
-      ${id},
+      ${id == undefined ? null : id},
       ${customer_id},
-      ${payment_option_id}
+      ${payment_option_id == undefined ? null : payment_option_id}
     )`,
       function (error) {
         if (error) return reject(error);

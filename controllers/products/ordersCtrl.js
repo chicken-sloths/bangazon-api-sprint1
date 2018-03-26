@@ -35,15 +35,6 @@ module.exports.getSingleOrder = (req, res, next) => {
     })
 };
 
-// creates a new order
-module.exports.createOrder = (req, res, next) => {
-  createOrder(req.body)
-    .then(data => {
-      res.status(200).json(data);
-    })
-    .catch(error => next(error));
-};
-
 // updates a new order by id
 module.exports.updateOrder = (req, res, next) => {
   updateOrder(req.params.id, req.body)
