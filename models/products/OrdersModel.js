@@ -1,27 +1,23 @@
 "use strict";
 
-const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('./db/api-sprint.sqlite');
+const sqlite3 = require(`sqlite3`);
+const db = new sqlite3.Database(`./db/api-sprint.sqlite`);
 
 // Gets all order data
 module.exports.getAllOrders = () =>
   new Promise((resolve, reject) => {
     db.all(`SELECT * FROM Orders`,
       (err, orders) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(orders);
+        return err ? reject(err) : resolve(orders);
       })
   });
 
 // gets single order info
 module.exports.getSingleOrder = id =>
   new Promise((resolve, reject) => {
-    db.get(`SELECT * FROM Orders WHERE order_id=${id}`,
+    db.get(`SELECT * FROM Orders WHERE order_id = ${id}`,
       (err, order) => {
-        if (err) reject(err);
-        resolve(order)
+        return err ? reject(err) : resolve(order);
       });
   });
 
@@ -34,8 +30,7 @@ module.exports.getOrderProducts = id =>
           INNER JOIN Products ON Product_Orders.product_id = Products.product_id
           WHERE Orders.order_id = ${ id}`,
       (err, products) => {
-        if (err) reject(err);
-        resolve(products)
+        return err ? reject(err) : resolve(products);
       });
   });
 
@@ -46,13 +41,12 @@ module.exports.createOrder = ({ customer_id, payment_option_id }) =>
     db.run(`INSERT INTO Orders(
       customer_id, 
       payment_option_id
-    )VALUES(
+    ) VALUES (
       ${customer_id}, 
       ${payment_option_id}
     )`,
-      function (error) {
-        if (error) return reject(error);
-        resolve(this.lastID);
+      function (err) {
+        return err ? reject(err) : resolve(this.lastID);
       })
   });
 
@@ -68,9 +62,8 @@ module.exports.updateOrder = (id, { customer_id, payment_option_id }) =>
       ${customer_id},
       ${payment_option_id}
     )`,
-      function (error) {
-        if (error) return reject(error);
-        resolve(this.lastID);
+      function (err) {
+        return err ? reject(err) : resolve(this.lastID);
       });
   });
 
@@ -82,9 +75,8 @@ module.exports.deleteOrder = id =>
       // Neccesary for cascading deletion to work.
       db.run(`PRAGMA foreign_keys = ON`);
       db.run(`DELETE FROM Orders WHERE order_id = ${id}`,
-        function (error) {
-          if (error) return reject(error);
-          resolve(id);
+        function (err) {
+          return err ? reject(err) : resolve(id);
         }
       );
     });
