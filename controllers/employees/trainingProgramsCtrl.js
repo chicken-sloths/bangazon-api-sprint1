@@ -15,7 +15,7 @@ module.exports.getTrainingProgramById = (req, res, next) => {
 module.exports.getAllTrainingPrograms = (req, res, next) => {
   programs.getAllTrainingPrograms()
     .then(data =>
-      data.length >= 1? res.status(200).json(data) : res.status(204).send()
+      data.length >= 1 ? res.status(200).json(data) : res.status(204).send()
     )
     .catch(err => next(err));
 };
@@ -43,7 +43,7 @@ module.exports.deleteTrainingProgram = (req, res, next) => {
   if (req.params.id >= 0) {
     programs.deleteTrainingProgram(req.params.id)
       .then(changes =>
-        changes >= 1 : res.status(200).json(changes) : res.status(204).send()
+        changes >= 1 ? res.status(200).json(changes) : res.status(204).send()
       )
       .catch(err => next(err));
   }
