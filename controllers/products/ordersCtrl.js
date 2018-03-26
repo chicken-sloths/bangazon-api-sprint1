@@ -52,7 +52,7 @@ module.exports.updateOrder = (req, res, next) => {
 module.exports.deleteOrder = (req, res, next) => {
   deleteOrder(req.params.id)
     .then(changes =>
-      changes >= 1 ? res.status(200).json(data) : res.status(204).send()
+      changes >= 1 ? res.status(200).json(changes) : res.status(204).send()
     )
     .catch(err => {
       next(err);
