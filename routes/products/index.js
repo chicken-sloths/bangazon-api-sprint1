@@ -3,10 +3,10 @@
 const { Router } = require('express');
 const productsIndexRouter = Router();
 
+productsIndexRouter.use('/products', require('./products'));
 productsIndexRouter.use('/product-types', require('./productTypes'));
-productsIndexRouter.use(require('./products'));
-productsIndexRouter.use(require('./orders'));
-productsIndexRouter.use(require('./customers')); // throws no such column error
-productsIndexRouter.use("/payment-options", require('./paymentOptions')); // throws no such column error
+productsIndexRouter.use('/orders', require('./orders'));
+productsIndexRouter.use('/customers', require('./customers'));
+productsIndexRouter.use('/payment-options', require('./paymentOptions'));
 
 module.exports = productsIndexRouter;

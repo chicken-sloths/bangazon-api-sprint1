@@ -5,18 +5,13 @@ const appRoot = process.cwd();
 const { Router } = require('express');
 const paymentOptionsRouter = Router();
 
-const controller = require("../../controllers/products/paymentOptionsCtrl");
+const controller = require('../../controllers/products/paymentOptionsCtrl');
 
-// GET /payment-options
 paymentOptionsRouter.get('/', controller.getAllPaymentOptions);
-// GET /payment-options/1
-paymentOptionsRouter.get("/:id", controller.getSinglePaymentOption);
-// POST /payment-options
-paymentOptionsRouter.post("/", controller.createNewPaymentOption);
-// PUT /payment-options/:id
-paymentOptionsRouter.put("/:id", controller.updatePaymentOption);
-// DELETE /payment-options/:id
-paymentOptionsRouter.delete("/:id", controller.deletePaymentOption);
+paymentOptionsRouter.get('/:id', controller.getSinglePaymentOption);
+paymentOptionsRouter.post('/', controller.createNewPaymentOption);
+paymentOptionsRouter.put('/:id', controller.updatePaymentOption);
+paymentOptionsRouter.delete('/:id', controller.deletePaymentOption);
 
 
 module.exports = paymentOptionsRouter;
