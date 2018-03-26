@@ -38,9 +38,9 @@ module.exports.updateDepartment = (id, { supervisor_id, expense_budget, name }) 
       ${expense_budget},
       "${name}"
     )`,
-      function(error){
-        if (error) return reject(error);
-        resolve(id);
+      function(err){
+        if (err) return reject(err);
+        resolve(this.lastID);
       });
   });
 }
