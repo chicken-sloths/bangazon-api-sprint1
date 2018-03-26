@@ -3,7 +3,7 @@
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./db/api-sprint.sqlite');
 
-const getAll = () =>{
+module.exports.getAll = () =>{
   return new Promise((resolve, reject)=>{
     db.all(
       `SELECT Customers.* FROM Customers`,
@@ -15,7 +15,7 @@ const getAll = () =>{
   });
 };
 
-const getOne = id =>{
+module.exports.getOne = id =>{
   return new Promise((resolve, reject)=>{
     db.get(
       `SELECT Customers.* FROM Customers
@@ -29,7 +29,7 @@ const getOne = id =>{
 };
 
 // This function looks for all customers that do not have any PAST orders
-const getFrugalCustomers = () =>{
+module.exports.getFrugalCustomers = () =>{
   return new Promise((resolve, reject)=>{
     db.all(`
     SELECT Customers.*
@@ -45,33 +45,12 @@ const getFrugalCustomers = () =>{
   });
 };
 
-const postNew = ({first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) =>{
-  return new Promise((resolve, reject)=>{
-    db.run(`
-    INSERT INTO "Customers"
-    ("customer_id", "first_name", "last_name", "account_creation_date", "street_address", "city", "state", "postal_code", "phone_number")
-    VALUES (null,
-            "${first_name}",
-            "${last_name}",
-            "${account_creation_date}",
-            "${street_address}",
-            "${city}",
-            "${state}",
-            "${postal_code}",
-            "${phone_number}"
-    );`, function(error){
-      if(error) reject(error);
-      resolve(this.lastID);
-    });
-  });
-};
-
-const updateOne = (id, {first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) => {
+module.exports.updateOne = (id, {first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) => {
   return new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Customers
             (customer_id, first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number)
             VALUES (
-            ${id},
+            ${id == undefined ? null : id},
             "${first_name}",
             "${last_name}",
             "${account_creation_date}",
@@ -81,17 +60,10 @@ const updateOne = (id, {first_name, last_name, account_creation_date, street_add
             "${postal_code}",
             "${phone_number}"
             )`,
-      err => {
+      function(err) {
         if (err) return reject(err);
-        resolve(id);
+        resolve(this.lastID);
       });
   });
 };
 
-module.exports = {
-  getAll,
-  getOne,
-  getFrugalCustomers,
-  postNew,
-  updateOne
-};
