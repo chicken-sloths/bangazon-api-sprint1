@@ -14,7 +14,13 @@ app.use('/api/v1', routes);
 
 // End middleware stack
 
-// TODO: Error Handling
+// Error handler
+
+app.use((err, req, res, next ) => {
+  err = err || new Error("Internal Server Error");
+  res.status( err.status || 500);
+  res.json({ error: err.message });
+});
 
 // End error handling
 
