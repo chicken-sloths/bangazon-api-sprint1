@@ -76,7 +76,7 @@ module.exports.deleteOrder = id =>
       db.run(`PRAGMA foreign_keys = ON`);
       db.run(`DELETE FROM Orders WHERE order_id = ${id}`,
         function (err) {
-          return err ? reject(err) : resolve(id);
+          return err ? reject(err) : resolve(this.changes);
         }
       );
     });

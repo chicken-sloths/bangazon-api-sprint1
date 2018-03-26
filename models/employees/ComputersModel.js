@@ -37,7 +37,7 @@ module.exports.deleteComputer = id => {
                 WHERE computer_id = ${id}`,
         function(err) {
           if (err) return reject(err);
-          resolve(id);
+          resolve(this.changes);
         });
       })
       .catch(err => reject(err));
