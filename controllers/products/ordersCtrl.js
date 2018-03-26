@@ -27,7 +27,7 @@ module.exports.getSingleOrder = (req, res, next) => {
         order.Products = productData;
         res.status(200).json(order);
       } else {
-        res.status(404).send("Sorry! This order was not found.");
+        res.status(404).send(`Sorry! This order was not found.`);
       }  
     })
     .catch(error => {

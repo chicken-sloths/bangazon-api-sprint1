@@ -13,8 +13,8 @@ const {
 } = require(appRoot + '/controllers/products/productTypesCtrl');
 
 productTypesRouter.get('/', getAllProductTypes);
-productTypesRouter.post('/', updateProductTypesTable);
 productTypesRouter.get('/:id', getSingleProductType);
+productTypesRouter.post('/', updateProductTypesTable);
 productTypesRouter.put('/:id', updateProductTypesTable);
 productTypesRouter.delete('/:id', deleteProductType);
 
