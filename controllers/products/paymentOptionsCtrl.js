@@ -32,7 +32,7 @@ module.exports.getAllPaymentOptions = (req, res, next) => {
 
 // create new payment option
 module.exports.createNewPaymentOption = (req, res, next) => {
-  let { type, account_number, customer_id } = req.body;
+  const { type, account_number, customer_id } = req.body;
   if (type && account_number && customer_id) {
     options.createPaymentOption(req.body)
       .then(data => {
