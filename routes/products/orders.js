@@ -5,9 +5,12 @@ const appRoot = process.cwd();
 const { Router } = require('express');
 const ordersRouter = Router();
 
-const controller = require(appRoot + '/controllers/products/ordersCtrl');
+const { getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder } = require(appRoot + '/controllers/products/ordersCtrl');
 
-//TODO: routes & their corresponding controllers are enumerated here
-ordersRouter.get('/', controller);
+ordersRouter.get('/orders', getAllOrders);
+ordersRouter.get('/orders/:id', getSingleOrder);
+ordersRouter.post('/orders', createOrder);
+ordersRouter.put('/orders/:id', updateOrder);
+ordersRouter.delete('/orders/:id', deleteOrder);
 
 module.exports = ordersRouter;

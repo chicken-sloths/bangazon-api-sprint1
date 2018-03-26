@@ -24,9 +24,6 @@ module.exports.getSingleDepartment = (id) => {
   })
 }
 
-// POST
-// PUT
-
 //creates a new department with data from req.body
 module.exports.createDepartment = ({ supervisor_id, expense_budget, name }) => {
   return new Promise((resolve, reject) => {
