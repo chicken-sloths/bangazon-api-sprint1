@@ -35,7 +35,7 @@ module.exports.getSingleOrder = (req, res, next) => {
 // updates a new order by id
 module.exports.updateOrder = (req, res, next) => {
   const { customer_id, payment_type_id } = req.body;
-  if (customer_id, payment_type_id) {
+  if (customer_id) {
     updateOrder(req.params.id, req.body)
     .then(data => res.status(200).json(data))
     .catch(err => next(err));
