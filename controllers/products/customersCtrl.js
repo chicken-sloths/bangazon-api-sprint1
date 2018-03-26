@@ -9,7 +9,7 @@ const getAllCustomers = (req, res, next) =>{
   if(req.query.active === "false"){
     getFrugalCustomers()
   .then(customers =>
-    customers >= 1 ? res.status(200).json(customers) : res.status(204).send()
+    customers.length >= 1 ? res.status(200).json(customers) : res.status(204).send()
   )
   .catch(err=>{
     next(err);
@@ -17,7 +17,7 @@ const getAllCustomers = (req, res, next) =>{
   }else{
     getAll()
     .then(customers =>
-      customers >= 1 ? res.status(200).json(customers) : res.status(204).send()
+      customers.length >= 1 ? res.status(200).json(customers) : res.status(204).send()
     )
     .catch(err => next(err));
   }

@@ -12,14 +12,14 @@ const {
 module.exports.getAllProductTypes = (req, res, next) =>
   getAllProductTypes()
   .then(prodTypes =>
-    prodTypes >= 1 ? res.status(200).json(prodTypes) : res.status(204).send()
+    prodTypes.length >= 1 ? res.status(200).json(prodTypes) : res.status(204).send()
   )
   .catch(err => next(err));
 
 module.exports.getSingleProductType = (req, res, next) =>
   getSingleProductType(req.params.id)
   .then(prodType =>
-    prodType >= 1 ? res.status(200).json(prodType) : res.status(204).send()
+    prodType.length >= 1 ? res.status(200).json(prodType) : res.status(204).send()
   )
   .catch(err => next(err));
 

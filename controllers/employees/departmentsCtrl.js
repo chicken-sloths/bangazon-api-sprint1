@@ -7,7 +7,7 @@ const { getAllDepartments, getSingleDepartment, createDepartment, updateDepartme
 module.exports.getAllDepartments = (req, res, next) =>
   getAllDepartments()
     .then(departments =>
-      departments >= 1 ?
+      departments.length >= 1 ?
       res.status(200).json(departments) : res.status(204).send()
     )
     .catch(err => next(err))
@@ -16,7 +16,7 @@ module.exports.getAllDepartments = (req, res, next) =>
 module.exports.getSingleDepartment = (req, res, next) =>
   getSingleDepartment(req.params.id)
     .then(department =>
-      department >= 1 ?
+      department.length >= 1 ?
       res.status(200).json(department) : res.status(204).send()
     )
     .catch(err => next(err))

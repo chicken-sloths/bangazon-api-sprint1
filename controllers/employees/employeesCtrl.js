@@ -10,12 +10,16 @@ const {
 
 module.exports.getAllEmployees = (req, res, next) =>
   getAllEmployees()
-  .then(emps => emps >= 1 ? res.status(200).json(emps) : res.status(204).json())
+  .then(emps =>
+    emps.length >= 1 ? res.status(200).json(emps) : res.status(204).json()
+  )
   .catch(err => next(err));
 
 module.exports.getSingleEmployee = (req, res, next) =>
   getSingleEmployee(req.params.id)
-  .then(emp => emp >= 1 ? res.status(200).json(emp) : res.status(204).json())
+  .then(emp =>
+    emp.length >= 1 ? res.status(200).json(emp) : res.status(204).json()
+  )
   .catch(err => next(err));
 
 module.exports.updateEmployee = (req, res, next) => {

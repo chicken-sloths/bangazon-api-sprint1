@@ -11,7 +11,7 @@ const {
 module.exports.getAllProducts = (req, res, next) => {
   getAllProducts()
     .then(products =>
-      products >= 1 ? res.status(200).json(products) : res.status(204).send()
+      products.length >= 1 ? res.status(200).json(products) : res.status(204).send()
     )
     .catch(err => next(err));
 };
@@ -19,7 +19,7 @@ module.exports.getAllProducts = (req, res, next) => {
 module.exports.getSingleProduct = (req, res, next) => {
   getSingleProduct(req.params.id)
     .then(product =>
-      product >= 1 ? res.status(200).json(product) : res.status(204).send()
+      product.length >= 1 ? res.status(200).json(product) : res.status(204).send()
     )
     .catch(err => next(err));
 };
