@@ -12,7 +12,7 @@ const {
 } = require(appRoot + '/controllers/employees/employeesCtrl');
 
 employeesRouter.get('/', getAllEmployees);
-employeesRouter.post('/', updateEmployee);
 employeesRouter.get('/:id', getSingleEmployee);
+employeesRouter.post('/', updateEmployee);
 employeesRouter.put('/:id', updateEmployee)
 module.exports = employeesRouter;
