@@ -42,9 +42,9 @@ module.exports.updatePaymentOption = (req, res, next) => {
 module.exports.deletePaymentOption = (req, res, next) => {
   if (req.params.id >= 0) {
     options.deletePaymentOption(req.params.id)
-      .then(id => {
-        res.status(200).json(id);
-      })
+      .then(changes =>
+        changes >= 1 ? res.status(200).json(id) : res.status(204).send()
+      )
       .catch(err => next(err));
   }
 };
