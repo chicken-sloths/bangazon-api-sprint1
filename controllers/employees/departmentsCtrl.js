@@ -39,18 +39,3 @@ module.exports.updateDepartment = (req, res, next) => {
     next(error);
   }
 }
-
-// creates a new department
-module.exports.createNewDepartment = (req, res, next) => {
-  let { supervisor_id, expense_budget, name } = req.body;
-  if (supervisor_id && expense_budget && name) {
-    createDepartment(req.body)
-      .then(data => {
-        res.status(200).json(data);
-      })
-      .catch(error => next(error));
-  } else {
-    let error = new Error("Please supply a supervisor_id, expense_budget, and name");
-    next(error);
-  }
-}
