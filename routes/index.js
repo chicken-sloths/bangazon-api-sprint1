@@ -4,7 +4,7 @@ const { Router } = require('express');
 const router = Router();
 
 // Pulling in all routes for employees/
-router.use(require('./employees/index'));
+// router.use(require('./employees/index'));
 
 // Pulling in all routes for products/
 router.use(require('./products/index'));
