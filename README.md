@@ -4,6 +4,8 @@ Bangazon Corp API - Chicken Sloths Sprint 1 - NSS Day Cohort 23
 Welcome to the bangazon-api-sprint1 wiki!
 
 # API Documentation
+More information can be found on the [Bangazon Wiki](./wiki).
+
 ### API Access Paths & Table Information
 - [Employee](./wiki/employee)
 - [Department](./wiki/department)
@@ -15,6 +17,9 @@ Welcome to the bangazon-api-sprint1 wiki!
 - [Payment_Option](./wiki/payment_option)
 - [Product_Type](./wiki/product_type)
 
+### ERD
+- [Product ERD](./wiki/Products-ERD-Notes)
+- [Employee ERD](./wiki/Employee-ERD)
 
 # Contribution Guide
 [Helpful Contributing Documentation](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/CLI-Commands)
