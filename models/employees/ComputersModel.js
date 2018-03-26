@@ -33,8 +33,7 @@ module.exports.deleteComputer = id =>
   new Promise((resolve, reject) =>
     db.run(`DELETE FROM Computers WHERE computer_id = ${id}`,
       function(err) {
-        if (err) return reject(err);
-        resolve(this.changes);
+        err ? reject(err) : resolve(this.changes);
       }
     )
   );
