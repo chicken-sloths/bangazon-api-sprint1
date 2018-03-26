@@ -25,7 +25,7 @@ More information can be found on the [Bangazon Wiki](https://github.com/chicken-
 [Helpful Contributing Documentation](https://github.com/chicken-sloths/bangazon-api-sprint1/wiki/CLI-Commands)
 1. Fork to your profile
 1. Git Clone
-1. Npm Install
+1. Run `npm install`
 
 
 # Original Reqs:
