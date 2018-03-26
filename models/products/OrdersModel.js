@@ -45,6 +45,9 @@ module.exports.getOrderProducts = id => {
 
 // Creates a new order
 module.exports.createOrder = ({ customer_id, payment_option_id }) => {
+  // if no payment option id was passed in, declare the payment option id as null.
+  if(!payment_option_id) payment_option_id = null; 
+  
   return new Promise((resolve, reject) => {
     db.run(`INSERT INTO Orders(
       customer_id, 
