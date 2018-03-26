@@ -36,7 +36,7 @@ module.exports.getOrderProducts = id =>
 
 
 // Creates a new order
-module.exports.createOrder = ({ customer_id, payment_option_id }) =>
+module.exports.createOrder = ({ customer_id, payment_option_id = null }) =>
   new Promise((resolve, reject) => {
     db.run(`INSERT INTO Orders(
       customer_id, 
@@ -51,7 +51,7 @@ module.exports.createOrder = ({ customer_id, payment_option_id }) =>
   });
 
 // Updates information on an order by id
-module.exports.updateOrder = (id, { customer_id, payment_option_id }) =>
+module.exports.updateOrder = (id, { customer_id, payment_option_id = null }) =>
   new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Orders( 
       order_id,
