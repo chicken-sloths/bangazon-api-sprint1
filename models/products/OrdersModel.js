@@ -8,7 +8,7 @@ module.exports.getAllOrders = () =>
   new Promise((resolve, reject) => {
     db.all(`SELECT * FROM Orders`,
       (err, orders) => {
-        return err ? reject(err) : resolve(orders);
+        err ? reject(err) : resolve(orders);
       })
   });
 
@@ -17,7 +17,7 @@ module.exports.getSingleOrder = id =>
   new Promise((resolve, reject) => {
     db.get(`SELECT * FROM Orders WHERE order_id = ${id}`,
       (err, order) => {
-        return err ? reject(err) : resolve(order);
+        err ? reject(err) : resolve(order);
       });
   });
 
@@ -30,14 +30,14 @@ module.exports.getOrderProducts = id =>
           INNER JOIN Products ON Product_Orders.product_id = Products.product_id
           WHERE Orders.order_id = ${ id}`,
       (err, products) => {
-        return err ? reject(err) : resolve(products);
+        err ? reject(err) : resolve(products);
       });
   });
 
 // Updates information on an order by id
 module.exports.updateOrder = (id, { customer_id, payment_option_id = null }) =>
   new Promise((resolve, reject) => {
-    db.run(`REPLACE INTO Orders( 
+    db.run(`REPLACE INTO Orders(
       order_id,
       customer_id,
       payment_option_id
@@ -47,7 +47,7 @@ module.exports.updateOrder = (id, { customer_id, payment_option_id = null }) =>
       ${payment_option_id}
     )`,
       function (err) {
-        return err ? reject(err) : resolve(this.lastID);
+        err ? reject(err) : resolve(this.lastID);
       });
   });
 
@@ -60,7 +60,7 @@ module.exports.deleteOrder = id =>
       db.run(`PRAGMA foreign_keys = ON`);
       db.run(`DELETE FROM Orders WHERE order_id = ${id}`,
         function (err) {
-          return err ? reject(err) : resolve(id);
+          err ? reject(err) : resolve(this.changes);
         }
       );
     });

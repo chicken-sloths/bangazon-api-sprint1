@@ -41,16 +41,8 @@ module.exports.updateProduct = (req, res, next) => {
 
 module.exports.deleteProduct = (req, res, next) => {
   deleteProduct(req.params.id)
-    .then(successfulDelete => {
-      if (successfulDelete) {
-        res.status(200).json(successfulDelete);
-      } else {
-        const err = new Error(
-          "The product could not be deleted. It may not exist."
-        );
-        err.status = 400;
-        next(err);
-      }
-    })
+    .then(changes =>
+      changes >= 1 ? res.status(200).json(changes) : res.status(204).send()
+    )
     .catch(err => next(err));
 };

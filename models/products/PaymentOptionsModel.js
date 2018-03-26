@@ -45,19 +45,11 @@ module.exports.updatePaymentOption = (id, {type, account_number, customer_id}) =
 };
 
 // delete one payment option by id
-module.exports.deletePaymentOption = id => {
-  return new Promise((resolve, reject) => {
-    module.exports.getSinglePaymentOption(id)
-      .then(data => {
-        if (data.length >= 1) {
-          db.run(`DELETE FROM Payment_Options WHERE payment_option_id = ${id}`, err => {
-            if (err) return reject(err);
-            resolve(id);
-          });
-        } else {
-          let err = new Error("There is no Payment Option with that ID.");
-          reject(err);
-        }
-      })
-  });
-};
+module.exports.deletePaymentOption = id =>
+  new Promise((resolve, reject) =>
+    db.run(`DELETE FROM Payment_Options WHERE payment_option_id = ${id}`,
+      function(err) {
+        err ? reject(err) : resolve(this.changes);
+      }
+    )
+  );

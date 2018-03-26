@@ -20,22 +20,22 @@ module.exports.getAllProducts = () => new Promise((resolve, reject) =>
 module.exports.updateProduct = (id, { price, title, description, product_type_id, creator_id }) =>
   new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Products (
-      product_id, 
-      price, 
-      title, 
-      description, 
-      product_type_id, 
+      product_id,
+      price,
+      title,
+      description,
+      product_type_id,
       creator_id
     ) VALUES (
-      ${id == undefined ? null : id}, 
-      '${price}', 
-      '${title}', 
-      '${description}', 
-      '${product_type_id}', 
+      ${id == undefined ? null : id},
+      '${price}',
+      '${title}',
+      '${description}',
+      '${product_type_id}',
       '${creator_id}'
     )`,
       function (err) {
-        return err ? reject(err) : resolve(this.lastID);
+        err ? reject(err) : resolve(this.lastID);
       })
   });
 
@@ -44,6 +44,6 @@ module.exports.deleteProduct = id =>
     db.run(`DELETE FROM Products
       WHERE product_id = ${id}`,
       function (err) {
-        return err ? reject(err) : resolve(this.changes);
+        err ? reject(err) : resolve(this.changes);
       })
   });

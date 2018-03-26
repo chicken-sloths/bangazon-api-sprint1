@@ -51,9 +51,9 @@ module.exports.updateOrder = (req, res, next) => {
 // deletes an order by id
 module.exports.deleteOrder = (req, res, next) => {
   deleteOrder(req.params.id)
-    .then(data => {
-      res.status(200).json(data);
-    })
+    .then(changes =>
+      changes >= 1 ? res.status(200).json(changes) : res.status(204).send()
+    )
     .catch(err => {
       next(err);
     })

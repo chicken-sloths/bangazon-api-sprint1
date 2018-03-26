@@ -51,19 +51,11 @@ module.exports.updateTrainingProgram = (id, { start_date, end_date, name, max_ca
 };
 
 // delete one training program by id
-module.exports.deleteTrainingProgram = id => {
-  return new Promise((resolve, reject) => {
-    module.exports.getSingleTrainingProgram(id)
-      .then(data => {
-        if (data.length >= 1) {
-          db.run(`DELETE FROM Training_Programs WHERE training_program_id = ${id}`, err => {
-            if (err) return reject(err);
-            resolve(id);
-          });
-        } else {
-          let err = new Error(`There is no Training Program with that ID.`);
-          reject(err);
-        }
-      })
-  });
-};
+module.exports.deleteTrainingProgram = id =>
+  new Promise((resolve, reject) =>
+    db.run(`DELETE FROM Training_Programs WHERE training_program_id = ${id}`,
+      function(err) {
+        err ? reject(err) : resolve(this.changes);
+      }
+    )
+  );
