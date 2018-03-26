@@ -24,24 +24,6 @@ module.exports.getAllPaymentOptions = () => {
   });
 };
 
-// create new payment option
-module.exports.createPaymentOption = ({type, account_number, customer_id}) => {
-  return new Promise((resolve, reject) => {
-    db.run(`INSERT INTO Payment_Options (
-      type,
-      account_number,
-      customer_id
-    ) VALUES (
-      "${type}",
-      ${account_number},
-      ${customer_id}
-    )`, function(err) {
-      if (err) return reject(err);
-      resolve(this.lastID);
-    });
-  });
-};
-
 // update one payment option by id
 module.exports.updatePaymentOption = (id, {type, account_number, customer_id}) => {
   return new Promise((resolve, reject) => {
@@ -51,7 +33,7 @@ module.exports.updatePaymentOption = (id, {type, account_number, customer_id}) =
       account_number,
       customer_id
     ) VALUES (
-      ${id},
+      ${id == undefined ? null : id},
       "${type}",
       ${account_number},
       ${customer_id}
