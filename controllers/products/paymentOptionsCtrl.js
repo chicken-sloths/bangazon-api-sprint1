@@ -18,6 +18,7 @@ module.exports.getSinglePaymentOption = (req, res, next) => {
 
 // get all payment options
 module.exports.getAllPaymentOptions = (req, res, next) => {
+  console.log('controller found');
   options.getAllPaymentOptions()
     .then(data => {
       if (data.length >= 1) {
