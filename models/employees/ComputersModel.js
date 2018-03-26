@@ -4,7 +4,7 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./db/api-sprint.sqlite');
 
 // get single computer by id
-const getSingleComputer = id => {
+module.exports.getSingleComputer = id => {
   return new Promise((resolve, reject) => {
     db.all(`SELECT *
       FROM Computers c
@@ -17,7 +17,7 @@ const getSingleComputer = id => {
 };
 
 // return all computers
-const getAllComputers = () => {
+module.exports.getAllComputers = () => {
   return new Promise((resolve, reject) => {
     db.all(`SELECT *
       FROM Computers c`,
@@ -28,26 +28,8 @@ const getAllComputers = () => {
   });
 };
 
-// creates new computer with auto-incremented id, returns that id
-const createComputer = ({ mac_address, purchase_date, decommission_date }) => {
-  return new Promise((resolve, reject) => {
-    db.run(`INSERT INTO Computers (
-      mac_address,
-      purchase_date,
-      decommission_date
-    ) VALUES (
-      "${mac_address}",
-      "${purchase_date}",
-      "${decommission_date}"
-    )`, function(err) {
-      if (err) return reject(err);
-      resolve(this.lastID);
-    });
-  });
-}
-
 // delete one computer by id
-const deleteComputer = id => {
+module.exports.deleteComputer = id => {
   return new Promise((resolve, reject) => {
     getSingleComputer(id)
       .then(computer => {
@@ -63,7 +45,7 @@ const deleteComputer = id => {
 };
 
 // update one computer by id
-const updateComputer = (id, {mac_address, purchase_date, decommission_date}) => {
+module.exports.updateComputer = (id, {mac_address, purchase_date, decommission_date}) => {
   return new Promise((resolve, reject) => {
     db.run(`REPLACE INTO Computers
             (
@@ -72,22 +54,14 @@ const updateComputer = (id, {mac_address, purchase_date, decommission_date}) => 
               purchase_date,
               decommission_date
             ) VALUES (
-              ${id},
+              ${id == undefined ? null : id},
               "${mac_address}",
               "${purchase_date}",
               "${decommission_date}"
             )`,
-      err => {
+      function(err) {
         if (err) return reject(err);
-        resolve(id);
+        resolve(this.lastID);
       });
   });
-};
-
-module.exports = {
-  getSingleComputer,
-  getAllComputers,
-  createComputer,
-  deleteComputer,
-  updateComputer
 };

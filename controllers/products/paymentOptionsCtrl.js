@@ -30,21 +30,6 @@ module.exports.getAllPaymentOptions = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// create new payment option
-module.exports.createNewPaymentOption = (req, res, next) => {
-  const { type, account_number, customer_id } = req.body;
-  if (type && account_number && customer_id) {
-    options.createPaymentOption(req.body)
-      .then(data => {
-        res.status(200).json(data);
-      })
-      .catch(err => next(err));
-  } else {
-    let err = new Error("Please include a `type`, `account_number`, and `customer_id`.");
-    next(err);
-  }
-};
-
 // update one payment option by id
 module.exports.updatePaymentOption = (req, res, next) => {
   let { type, account_number, customer_id } = req.body;

@@ -7,10 +7,10 @@ const ordersRouter = Router();
 
 const { getAllOrders, getSingleOrder, createOrder, updateOrder, deleteOrder } = require(appRoot + '/controllers/products/ordersCtrl');
 
-ordersRouter.get('/orders', getAllOrders);
-ordersRouter.get('/orders/:id', getSingleOrder);
-ordersRouter.post('/orders', createOrder);
-ordersRouter.put('/orders/:id', updateOrder);
-ordersRouter.delete('/orders/:id', deleteOrder);
+ordersRouter.get('/', getAllOrders);
+ordersRouter.get('/:id', getSingleOrder);
+ordersRouter.post('/', createOrder);
+ordersRouter.put('/:id', updateOrder);
+ordersRouter.delete('/:id', deleteOrder);
 
 module.exports = ordersRouter;
