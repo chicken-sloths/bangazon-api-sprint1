@@ -17,7 +17,7 @@ const getAll = () =>{
 
 const getOne = id =>{
   return new Promise((resolve, reject)=>{
-    db.all(
+    db.get(
       `SELECT Customers.* FROM Customers
       WHERE Customers.customer_id = ${id}`,
       (error, customer)=>{
@@ -32,12 +32,12 @@ const getOne = id =>{
 const getFrugalCustomers = () =>{
   return new Promise((resolve, reject)=>{
     db.all(`
-    SELECT Customers.* 
+    SELECT Customers.*
     FROM Customers
     LEFT JOIN Orders
     ON Customers.customer_id = Orders.customer_id
     WHERE Orders.customer_id IS NULL
-    `, 
+    `,
     (error, customers)=>{
       if (error) return reject(error);
         resolve(customers);
@@ -48,7 +48,7 @@ const getFrugalCustomers = () =>{
 const postNew = ({first_name, last_name, account_creation_date, street_address, city, state, postal_code, phone_number}) =>{
   return new Promise((resolve, reject)=>{
     db.run(`
-    INSERT INTO "Customers" 
+    INSERT INTO "Customers"
     ("customer_id", "first_name", "last_name", "account_creation_date", "street_address", "city", "state", "postal_code", "phone_number")
     VALUES (null,
             "${first_name}",
@@ -88,7 +88,7 @@ const updateOne = (id, {first_name, last_name, account_creation_date, street_add
   });
 };
 
-module.exports = { 
+module.exports = {
   getAll,
   getOne,
   getFrugalCustomers,

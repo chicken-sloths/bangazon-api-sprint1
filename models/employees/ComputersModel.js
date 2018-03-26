@@ -6,7 +6,7 @@ const db = new sqlite3.Database('./db/api-sprint.sqlite');
 // get single computer by id
 module.exports.getSingleComputer = id => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT *
+    db.get(`SELECT *
       FROM Computers c
       WHERE c.computer_id = ${id}`,
       (err, data) => {
