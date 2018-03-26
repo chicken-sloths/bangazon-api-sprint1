@@ -38,7 +38,7 @@ module.exports.updateDepartment = (id, { supervisor_id, expense_budget, name }) 
       ${expense_budget},
       "${name}"
     )`,
-      function(err){
+      function (err) {
         if (err) return reject(err);
         resolve(this.lastID);
       });

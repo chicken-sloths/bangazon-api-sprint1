@@ -6,7 +6,7 @@ const db = new sqlite3.Database('./db/api-sprint.sqlite');
 // get single training program by id
 module.exports.getSingleTrainingProgram = id => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT *
+    db.get(`SELECT *
       FROM Training_Programs t
       WHERE t.training_program_id = ${id}`,
       (err, data) => {
