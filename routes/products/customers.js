@@ -9,8 +9,8 @@ const { getAllCustomers, getOneCustomer, postNewCustomer, updateCustomer } = req
 
 //TODO: routes & their corresponding controllers are enumerated here
 customersRouter.get('/:id', getOneCustomer);
-customersRouter.put('/:id', updateCustomer);
 customersRouter.get('/', getAllCustomers);
 customersRouter.post('/', postNewCustomer);
+customersRouter.put('/:id', updateCustomer);
 
 module.exports = customersRouter;
