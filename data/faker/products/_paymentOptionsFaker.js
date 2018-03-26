@@ -1,14 +1,14 @@
 'use strict';
 const faker = require('faker');
 const randomInt = require('../randomInt');
-
+const paymentTypes = ["Discover", "American Express", "Visa", "Gift Card", "PayPal", "MasterCard", "Bank Transfer", "Venmo"]
 const _generatePaymentOptions = ({customerAmount}) => {
   let paymentOptions = [];
   
   for (let i = 0; i < customerAmount; i++) {
     const paymentOption = {
       payment_option_id: i,
-      type: faker.finance.transactionType(),
+      type: paymentTypes[randomInt(paymentTypes.length)],
       account_number: faker.finance.account(),
       customer_id: randomInt(customerAmount)
     };
