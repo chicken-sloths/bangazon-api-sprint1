@@ -17,7 +17,23 @@ module.exports.getSingleEmployee = id =>
     )
   );
 
-module.exports.updateEmployee = (id, {first_name, last_name, department_id}) =>
+module.exports.postEmployee = (first_name, last_name, department_id) =>
+  new Promise((resolve, reject) =>
+    db.run(`INSERT INTO Employees(
+      first_name,
+      last_name,
+      department_id)
+      VALUES (
+        "${first_name}",
+        "${last_name}",
+        ${department_id}
+      )`, function(err) {
+        return err ? reject(err) : resolve(this.lastID)
+      }
+    )
+  );
+
+module.exports.putEmployee = (id, first_name, last_name, department_id) =>
   new Promise((resolve, reject) =>
     db.run(`REPLACE INTO Employees(
         employee_id,
@@ -26,12 +42,11 @@ module.exports.updateEmployee = (id, {first_name, last_name, department_id}) =>
         department_id
       )
       VALUES (
-        ${id == undefined ? null : id},
+        ${id},
         "${first_name}",
         "${last_name}",
         "${department_id}"
-      )`, function(err) {
-        return err ? reject(err) : resolve(this.lastID)
-      }
+      )`,
+      err => err ? reject(err) : resolve(id)
     )
   );
