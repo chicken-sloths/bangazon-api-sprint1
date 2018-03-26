@@ -24,8 +24,8 @@ module.exports.getAllCustomers = (req, res, next) => {
       .then((customers) => {
         res.status(200).json(customers);
       })
-      .catch(error => {
-        next(error);
+      .catch(err => {
+        next(err);
       });
   }
 };
@@ -35,18 +35,7 @@ module.exports.getOneCustomer = (req, res, next) => {
     .then((customer) => {
       res.status(200).json(customer);
     })
-    .catch(error => {
-      next(error);
-    });
-};
-
-module.exports.postNewCustomer = (req, res, next) => {
-  postNew(req.body)
-    .then(newData => {
-      res.status(200).json(newData);
-    })
     .catch(err => {
-      console.log('err in ctrl:', err);
       next(err);
     });
 };

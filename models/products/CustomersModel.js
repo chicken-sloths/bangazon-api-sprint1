@@ -60,7 +60,7 @@ module.exports.updateOne = (id, {first_name, last_name, account_creation_date, s
             "${postal_code}",
             "${phone_number}"
             )`,
-      err => {
+      function(err) {
         if (err) return reject(err);
         resolve(this.lastID);
       });
