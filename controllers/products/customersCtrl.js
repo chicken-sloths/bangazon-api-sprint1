@@ -9,36 +9,31 @@ const {
   updateOne } = require(appRoot + "/models/products/CustomersModel");
 
 module.exports.getAllCustomers = (req, res, next) => {
-  // This checks for the exact query url that was listed 
+  // This checks for the exact query url that was listed
   // in the wiki page for customers in our repo
   if (req.query.active === "false") {
     getFrugalCustomers()
-
-      .then((customers) => {
-    customers.length >= 1 ? res.status(200).json(customers) : res.status(204).send()
-      })
-      .catch(error => {
-        next(error);
-      });
+      .then(customers =>
+        customers.length >= 1 ?
+          res.status(200).json(customers) : res.status(204).send()
+      )
+      .catch(err => next(err));
   } else {
     getAll()
-      .then((customers) => {
-     customers.length >= 1 ? res.status(200).json(customers) : res.status(204).send()
-      })
-      .catch(err => {
-        next(err);
-      });
+      .then(customers =>
+         customers.length >= 1 ?
+           res.status(200).json(customers) : res.status(204).send()
+       )
+      .catch(err => next(err));
   }
 };
 
 module.exports.getOneCustomer = (req, res, next) => {
   getOne(req.params.id)
-    .then((customer) => {
+    .then(customer =>
       customer ? res.status(200).json(customer) : res.status(204).send()
-    })
-    .catch(err => {
-      next(err);
-    });
+    )
+    .catch(err => next(err));
 };
 
 module.exports.updateCustomer = (req, res, next) => {

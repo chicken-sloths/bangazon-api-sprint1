@@ -26,9 +26,7 @@ module.exports.updateProduct = (req, res, next) => {
   const { price, title, description, product_type_id, creator_id } = req.body;
   if (price && title && description && product_type_id && creator_id) {
     updateProduct(req.params.id, req.body)
-      .then(productId => {
-        res.status(200).json(productId);
-      })
+      .then(productId => res.status(200).json(productId))
       .catch(err => next(err));
   } else {
     const err = new Error(

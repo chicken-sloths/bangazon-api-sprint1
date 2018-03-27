@@ -25,9 +25,7 @@ module.exports.updatePaymentOption = (req, res, next) => {
   const { type, account_number, customer_id } = req.body;
   if (type && account_number && customer_id) {
     options.updatePaymentOption(req.params.id, req.body)
-      .then(data => {
-        res.status(200).json(data);
-      })
+      .then(data => res.status(200).json(data))
       .catch(err => next(err));
   } else {
     const err = new Error(
