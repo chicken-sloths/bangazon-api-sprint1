@@ -1,12 +1,11 @@
 "use strict";
 
-const appRoot = process.cwd();
 const {
   getAll,
   getOne,
   getFrugalCustomers,
   postNew,
-  updateOne } = require(appRoot + "/models/products/CustomersModel");
+  updateOne } = require("../../models/products/CustomersModel");
 
 module.exports.getAllCustomers = (req, res, next) => {
   // This checks for the exact query url that was listed 

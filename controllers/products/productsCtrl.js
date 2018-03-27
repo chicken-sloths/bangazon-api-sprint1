@@ -1,10 +1,10 @@
 "use strict";
-const appRoot = process.cwd();
+
 const {
   getSingleProduct,
   getAllProducts,
   updateProduct,
-  deleteProduct } = require(appRoot + "/models/products/ProductsModel");
+  deleteProduct } = require("../../models/products/ProductsModel");
 
 module.exports.getAllProducts = (req, res, next) => {
   getAllProducts()
