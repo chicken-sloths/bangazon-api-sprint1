@@ -7,16 +7,16 @@ const db = new sqlite3.Database('./db/api-sprint.sqlite');
 module.exports.getSingleTrainingProgram = id =>
   new Promise((resolve, reject) =>
     db.get(`SELECT * FROM Training_Programs t
-      WHERE t.training_program_id = ${id}`, (err, data) =>
-        err ? reject(err) : resolve(data)
+      WHERE t.training_program_id = ${id}`,
+      (err, data) => err ? reject(err) : resolve(data)
     )
   );
 
 // get all training programs
 module.exports.getAllTrainingPrograms = () =>
   new Promise((resolve, reject) =>
-    db.all(`SELECT * FROM Training_Programs t`, (err, data) =>
-      err ? reject(err) : resolve(data)
+    db.all(`SELECT * FROM Training_Programs t`,
+      (err, data) => err ? reject(err) : resolve(data)
     )
   );
 

@@ -6,8 +6,8 @@ const db = new sqlite3.Database('./db/api-sprint.sqlite');
 module.exports.getAllProductTypes = () =>
   new Promise((resolve, reject) =>
     db.all(
-      `SELECT * FROM Product_Types`, (err, data) =>
-      err ? reject(err) : resolve(data)
+      `SELECT * FROM Product_Types`,
+      (err, data) => err ? reject(err) : resolve(data)
     )
   );
 
