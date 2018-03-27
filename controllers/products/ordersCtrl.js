@@ -1,7 +1,13 @@
 "use strict";
 
-const appRoot = process.cwd();
-const { getAllOrders, getSingleOrder, getOrderProducts, createOrder, updateOrder, deleteOrder } = require(appRoot + "/models/products/OrdersModel");
+const {
+  getAllOrders,
+  getSingleOrder,
+  getOrderProducts,
+  createOrder,
+  updateOrder,
+  deleteOrder
+} = require("../../models/products/OrdersModel");
 
 // gets all orders
 module.exports.getAllOrders = (req, res, next) =>

@@ -1,12 +1,11 @@
 "use strict";
 
-const appRoot = process.cwd();
 
 const {
   getAllEmployees,
   getSingleEmployee,
   updateEmployee
-} = require(appRoot + "/models/employees/EmployeesModel");
+} = require("../..//models/employees/EmployeesModel");
 
 module.exports.getAllEmployees = (req, res, next) =>
   getAllEmployees()

@@ -1,7 +1,6 @@
 "use strict";
 
-const appRoot = process.cwd();
-const { getAllDepartments, getSingleDepartment, createDepartment, updateDepartment } = require(appRoot + "/models/employees/DepartmentsModel");
+const { getAllDepartments, getSingleDepartment, createDepartment, updateDepartment } = require("../../models/employees/DepartmentsModel");
 
 // gets all departments
 module.exports.getAllDepartments = (req, res, next) =>
