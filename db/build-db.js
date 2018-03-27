@@ -1,22 +1,22 @@
 'use strict';
 // All functions for building Employee Data
 const { 
-  makeComputerTable,
-  makeDepartmentTable,
-  makeEmployeeComputerTable,
-  makeEmployeeTable,
-  makeEmployeeTrainingTable,
-  makeTrainingProgramTable
+  makeComputersTable,
+  makeDepartmentsTable,
+  makeEmployeeComputersTable,
+  makeEmployeesTable,
+  makeEmployeeTrainingProgramsTable,
+  makeTrainingProgramsTable
 } = require('./employees/index');
 
 // All functions for building Product Data
 const { 
-  makeCustomerTable,
-  makeOrderTable,
+  makeCustomersTable,
+  makeOrdersTable,
   makePaymentOptionsTable,
-  makeProductOrderTable,
+  makeProductOrdersTable,
   makeProductsTable,
-  makeProductTypeTable
+  makeProductTypesTable
 } = require('./products/index');
 
 makeComputersTable();
