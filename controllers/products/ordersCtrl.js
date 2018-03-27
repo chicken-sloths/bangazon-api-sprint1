@@ -1,7 +1,6 @@
 "use strict";
 
-const appRoot = process.cwd();
-const { 
+const {
   getAllOrders,
   getSingleOrder,
   getOrderProducts,
