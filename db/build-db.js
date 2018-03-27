@@ -19,16 +19,16 @@ const {
   makeProductTypeTable
 } = require('./products/index');
 
-makeComputerTable();
-makeDepartmentTable();
-makeEmployeeTable();
-makeTrainingProgramTable();
-makeEmployeeComputerTable();
-makeEmployeeTrainingTable();
+makeComputersTable();
+makeDepartmentsTable();
+makeEmployeesTable();
+makeTrainingProgramsTable();
+makeEmployeeComputersTable();
+makeEmployeeTrainingProgramsTable();
 
-makeCustomerTable();
-makeOrderTable();
+makeCustomersTable();
+makeOrdersTable();
 makePaymentOptionsTable();
-makeProductTypeTable();
+makeProductTypesTable();
 makeProductsTable();
-makeProductOrderTable();
+makeProductOrdersTable();

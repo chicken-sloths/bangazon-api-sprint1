@@ -1,9 +1,9 @@
 'use strict';
 
 // export all the functions in the products folder
-module.exports.makeCustomerTable = require('./makeCustomerTable');
-module.exports.makeOrderTable = require('./makeOrderTable');
-module.exports.makePaymentOptionsTable = require('./makePaymentOptionTable');
-module.exports.makeProductOrderTable = require('./makeProductOrderTable');
+module.exports.makeCustomerTable = require('./makeCustomersTable');
+module.exports.makeOrderTable = require('./makeOrdersTable');
+module.exports.makePaymentOptionsTable = require('./makePaymentOptionsTable');
+module.exports.makeProductOrderTable = require('./makeProductOrdersTable');
 module.exports.makeProductsTable = require('./makeProductsTable');
-module.exports.makeProductTypeTable = require('./makeProductTypeTable');
+module.exports.makeProductTypeTable = require('./makeProductTypesTable');
