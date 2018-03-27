@@ -33,9 +33,7 @@ module.exports.getSingleOrder = (req, res, next) => {
         res.status(204).send();
       }
     })
-    .catch(err => {
-      next(err);
-    })
+    .catch(err => next(err))
 };
 
 // updates a new order by id
@@ -43,8 +41,8 @@ module.exports.updateOrder = (req, res, next) => {
   const { customer_id, payment_type_id } = req.body;
   if (customer_id) {
     updateOrder(req.params.id, req.body)
-    .then(data => res.status(200).json(data))
-    .catch(err => next(err));
+      .then(data => res.status(200).json(data))
+      .catch(err => next(err));
   } else {
     const err = new Error(
       "Please include: customer_id and payment_type_id"
@@ -60,7 +58,5 @@ module.exports.deleteOrder = (req, res, next) => {
     .then(changes =>
       changes >= 1 ? res.status(200).json(changes) : res.status(204).send()
     )
-    .catch(err => {
-      next(err);
-    })
+    .catch(err => next(err))
 };
