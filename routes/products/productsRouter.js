@@ -1,7 +1,5 @@
 "use strict";
 
-const appRoot = process.cwd();
-
 const { Router } = require('express');
 const productsRouter = Router();
 
@@ -9,7 +7,7 @@ const {
   getSingleProduct,
   getAllProducts,
   updateProduct,
-  deleteProduct } = require(appRoot + '/controllers/products/productsCtrl');
+  deleteProduct } = require('../../controllers/products/productsCtrl');
 
 productsRouter.get('/:id', getSingleProduct);
 productsRouter.get('/', getAllProducts);

@@ -1,7 +1,5 @@
 "use strict";
 
-const appRoot = process.cwd();
-
 const { Router } = require('express');
 const paymentOptionsRouter = Router();
 
